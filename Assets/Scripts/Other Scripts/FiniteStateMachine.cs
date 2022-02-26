@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-namespace FSM
-{
 	public class FiniteStateMachine : MonoBehaviour
 	{
 		
@@ -22,5 +20,3 @@ namespace FSM
 			
 
 	}
-
-}
