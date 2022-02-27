@@ -5,7 +5,7 @@ using Steerings;
 
 namespace FSM
 {
-    public class AntFSM : FiniteStateMachine
+    public class AntsFSM : FiniteStateMachine
     {
         public enum State
         {

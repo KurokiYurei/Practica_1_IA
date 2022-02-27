@@ -10,6 +10,7 @@ public class INVASOR_Blackboard : MonoBehaviour
     public float catReachedRadius = 1f;
     public float placeReachedRadius = 1f;
     public float minDistanceToHide = 10f;
+    public Vector2 windowsBounds;
 
     public GameObject moveTarget;
     public GameObject spawnPoint;

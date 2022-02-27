@@ -5,14 +5,9 @@ using Steerings;
 
 namespace FSM
 {
-	[RequireComponent(typeof(INVASOR_Blackboard))]
-	[RequireComponent(typeof(Arrive))]
-	[RequireComponent(typeof(Flee))]
-	[RequireComponent(typeof(KinematicState))]
-
 	public class FSMInvasor : FiniteStateMachine
 	{
-		public enum State {INITIAL, HIDE, RUN_AWAY, MOVE, FIGHT};
+		public enum State {INITIAL, HIDE, RUN_AWAY, MOVE, GO_TO_CAT, FIGHT};
 
 		public State currentState = State.INITIAL;
 		private KinematicState KS;
@@ -20,7 +15,9 @@ namespace FSM
 		public Arrive arrive;
 		public Flee flee;
 		public float hidingTime;
-		public float fightingTime;	
+		public float fightingTime;
+
+		public bool visible;
 		// Start is called before the first frame update
 		void Start()
 		{
@@ -29,12 +26,14 @@ namespace FSM
 			blackboard = GetComponent<INVASOR_Blackboard>();
 			KS = GetComponent <KinematicState>();
 
-			arrive.enabled = false;		
+			arrive.enabled = false;
+			flee.enabled = false;
 		}
 
 		public override void Exit()
 		{
 			// stop any steering that may be enabled
+			flee.enabled = false;
 			arrive.enabled = false;        
 			base.Exit();
 		}
@@ -62,7 +61,7 @@ namespace FSM
 					hidingTime += Time.deltaTime;
 					break;
 				case State.RUN_AWAY:
-					if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) > blackboard.minDistanceToHide)
+					if(!visible)
 					{					
 						ChangeState(State.HIDE);					
 					}
@@ -75,16 +74,22 @@ namespace FSM
 
 					if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) < blackboard.catDetectableRadius)
 					{
-						ChangeState(State.FIGHT);
+						ChangeState(State.GO_TO_CAT);
 					}
 					break;
+				case State.GO_TO_CAT:
+					if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) <= blackboard.catReachedRadius)
+					{
+						ChangeState(State.FIGHT);
+					}					
+					break;
 				case State.FIGHT:
-					if(fightingTime >= blackboard.maxFightTime)
+					if (fightingTime >= blackboard.maxFightTime)
 					{
 						ChangeState(State.RUN_AWAY);
 					}
 					fightingTime += Time.deltaTime;
-					break;			
+					break;
 			}
 		}
 
@@ -102,11 +107,13 @@ namespace FSM
 				case State.MOVE:
 					arrive.enabled = false;
 					arrive.target = null;
-					break;
-				case State.FIGHT:
+					break;				
+				case State.GO_TO_CAT:
 					arrive.enabled = false;
 					arrive.target = null;
-					break;			
+					break;
+				case State.FIGHT:
+					break;
 			}
 		
 			switch (newState)
@@ -122,11 +129,13 @@ namespace FSM
 					arrive.target = blackboard.moveTarget;
 					arrive.enabled = true;
 					break;
-				case State.FIGHT:
+				case State.GO_TO_CAT:
 					arrive.target = blackboard.cat;
-					arrive.enabled = true;
+					arrive.enabled = true;					
+					break;
+				case State.FIGHT:
 					fightingTime = 0f;
-					break;			
+					break;
 
 			} 
 			currentState = newState;
@@ -139,6 +148,35 @@ namespace FSM
 			KS.position = blackboard.spawnPoint.transform.position;		
 			KS.enabled = true;
 		}
-	}
 
+        private void OnBecameVisible()
+        {
+			visible = true;
+        }
+
+        private void OnBecameInvisible()
+        {
+            visible = false;
+        }
+		
+		/*private void OnDrawGizmos()
+		{
+			Gizmos.color = Color.red;
+
+			Gizmos.DrawWireSphere(gameObject.transform.position, blackboard.catDetectableRadius);
+
+			Gizmos.color = Color.green;
+
+			Gizmos.DrawWireSphere(gameObject.transform.position, blackboard.catReachedRadius);
+
+			Gizmos.color = Color.blue;
+
+			Gizmos.DrawWireSphere(gameObject.transform.position, blackboard.minDistanceToHide);
+
+			Gizmos.color = Color.yellow;
+
+			Gizmos.DrawWireSphere(gameObject.transform.position, blackboard.placeReachedRadius);
+		
+		}*/
+	}
 }
