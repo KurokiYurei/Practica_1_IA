@@ -405,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 1826753632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.63, y: -7.33, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -428,7 +428,6 @@ MonoBehaviour:
   flee: {fileID: 0}
   hidingTime: 0
   fightingTime: 0
-  respawnTime: 0
 --- !u!114 &1826753636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,8 +471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d968a7609227b48a68647797ae4498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHidingTime: 2
-  maxFightTime: 5
+  maxHidingTime: 10
+  maxFightTime: 7
   catDetectableRadius: 3
   catReachedRadius: 1
   placeReachedRadius: 1
@@ -494,9 +493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAcceleration: 2
-  maxSpeed: 10
-  maxAngularAcceleration: 90
-  maxAngularSpeed: 90
+  maxSpeed: 5
+  maxAngularAcceleration: 45
+  maxAngularSpeed: 45
   position: {x: 0, y: 0, z: 0}
   orientation: 0
   linearVelocity: {x: 0, y: 0, z: 0}
