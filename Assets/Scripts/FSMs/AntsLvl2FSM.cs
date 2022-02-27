@@ -15,23 +15,22 @@ public class AntsLvl2FSM : FiniteStateMachine
     public GameObject cheese;
     public Transform cheeseSpawner;
     private bool transportingCheese;
-    private float closeToCheeseDistance;
+    private float closeToCheeseSpawnerDistance;
+    private AntFSM antFSM;
     void Start()
     {
         flockingAround = GetComponent<FlockingAround>();
-        closeToCheeseDistance = 2.0f;
+        closeToCheeseSpawnerDistance = 2.0f;
+        antFSM = GetComponent<AntFSM>();
     }
 
     public override void Exit()
     {
-        flockingAround.enabled = false;
         base.Exit();
     }
 
     public override void ReEnter()
     {
-        transportingCheese = false;
-        currentState = State.GO_TO_CHEESE;
         base.ReEnter();
     }
 
@@ -40,7 +39,7 @@ public class AntsLvl2FSM : FiniteStateMachine
         switch (currentState)
         {
             case State.GO_TO_CHEESE:
-                if(SensingUtils.DistanceToTarget(gameObject, cheeseSpawner.gameObject) <= closeToCheeseDistance)
+                if(SensingUtils.DistanceToTarget(gameObject, cheeseSpawner.gameObject) <= closeToCheeseSpawnerDistance)
                 {
                     cheese.SetActive(true);
                     transportingCheese = true;
@@ -52,7 +51,10 @@ public class AntsLvl2FSM : FiniteStateMachine
                 break;
 
             case State.LVL1FSM:
-                
+                if (cheese.activeSelf == false)
+                {
+                    ChangeState(State.GO_TO_CHEESE);
+                }
                 break;
 
             default:
@@ -69,7 +71,7 @@ public class AntsLvl2FSM : FiniteStateMachine
                 break;
 
             case State.LVL1FSM:
-
+                transportingCheese = false;
                 break;
 
             default:
@@ -85,7 +87,7 @@ public class AntsLvl2FSM : FiniteStateMachine
                 break;
 
             case State.LVL1FSM:
-                Exit();
+                antFSM.ReEnter();
                 break;
 
             default:

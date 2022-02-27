@@ -7,7 +7,7 @@ public class AntFSM : FiniteStateMachine
 {
     public enum State
     {
-        INITIAL, WANDERING, GO_TO_TARGET, NO_CHEESE
+        INITIAL, WANDERING, GO_TO_TARGET
     };
 
     public State currentState = State.INITIAL;
