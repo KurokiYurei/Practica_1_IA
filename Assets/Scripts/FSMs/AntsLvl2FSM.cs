@@ -18,12 +18,12 @@ namespace FSM
         public Transform cheeseSpawner;
         private bool transportingCheese;
         private float closeToCheeseSpawnerDistance;
-        private AntFSM antFSM;
+        private AntsFSM antFSM;
         void Start()
         {
             flockingAround = GetComponent<FlockingAround>();
             closeToCheeseSpawnerDistance = 2.0f;
-            antFSM = GetComponent<AntFSM>();
+            antFSM = GetComponent<AntsFSM>();
         }
 
         public override void Exit()
