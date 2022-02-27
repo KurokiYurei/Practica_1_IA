@@ -18,6 +18,7 @@ public class CatFSM : FiniteStateMachine
 
     private CatBlackboard blackboard;
 
+    private GameObject food; //the food for the cat, a sardine this time
     private WanderAround wander;
 
     private float elapsedTime;
@@ -50,6 +51,7 @@ public class CatFSM : FiniteStateMachine
         switch (currentState)
         {
             case State.INITIAL:
+                ChangeState(State.WANDER);
                 break;
             case State.WANDER:
                 break;
@@ -68,9 +70,8 @@ public class CatFSM : FiniteStateMachine
     {
         switch (currentState)
         {
-            case State.INITIAL:
-                break;
             case State.WANDER:
+                wander.enabled = false;
                 break;
             case State.SEEK_FOOD:
                 break;
@@ -84,9 +85,8 @@ public class CatFSM : FiniteStateMachine
 
         switch (newState)
         {
-            case State.INITIAL:
-                break;
             case State.WANDER:
+                wander.enabled = true;
                 break;
             case State.SEEK_FOOD:
                 break;
