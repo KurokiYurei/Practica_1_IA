@@ -7,12 +7,11 @@ public class AntFSM : FiniteStateMachine
 {
     public enum State
     {
-        INITIAL, WANDERING, GO_TO_TARGET
+        INITIAL, WANDERING, GO_TO_TARGET, NO_CHEESE
     };
 
     public State currentState = State.INITIAL;
     private FlockingAround flockingAround;
-    private Arrive arrive;
     public GameObject userControlledTarget;
     private float closeToFollowTargetDistance;
     private float closeToTargetDistance;
@@ -21,7 +20,6 @@ public class AntFSM : FiniteStateMachine
     void Start()
     {
         flockingAround = GetComponent<FlockingAround>();
-        arrive = GetComponent<Arrive>();
 
         closeToTargetDistance = 10.0f;
         closeToFollowTargetDistance = 30.0f;
@@ -29,7 +27,6 @@ public class AntFSM : FiniteStateMachine
 
     public override void Exit()
     {
-        arrive.enabled = false;
         flockingAround.enabled = false;
         base.Exit();
     }
@@ -59,12 +56,12 @@ public class AntFSM : FiniteStateMachine
             case State.GO_TO_TARGET:
                 if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > closeToFollowTargetDistance)
                 {
-                    flockingAround.seekWeight = 0.7f;
+                    flockingAround.seekWeight = 0.3f;
                     ChangeState(State.WANDERING);
                 }
                 if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= closeToTargetDistance)
                 {
-                    flockingAround.seekWeight = 0.3f;
+                    flockingAround.seekWeight = 0.7f;
                     ChangeState(State.WANDERING);
                 }
                 break;
@@ -86,7 +83,7 @@ public class AntFSM : FiniteStateMachine
                 break;
 
             case State.GO_TO_TARGET:
-                arrive.enabled = false;
+                flockingAround.enabled = false;
                 break;
 
             default:
@@ -104,8 +101,9 @@ public class AntFSM : FiniteStateMachine
                 break;
 
             case State.GO_TO_TARGET:
-                arrive.target = userControlledTarget;
-                arrive.enabled = true;
+                flockingAround.seekWeight = 1.0f;
+                flockingAround.attractor = userControlledTarget;
+                flockingAround.enabled = true;
                 break;
 
             default:
