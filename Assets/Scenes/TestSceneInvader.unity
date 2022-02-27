@@ -494,8 +494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd97df895ddcbf4b878f56207728ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 2
-  maxSpeed: 10
+  maxAcceleration: 3
+  maxSpeed: 7
   maxAngularAcceleration: 45
   maxAngularSpeed: 45
   position: {x: 0, y: 0, z: 0}
