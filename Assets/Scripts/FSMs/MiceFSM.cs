@@ -5,8 +5,6 @@ using Steerings;
 
 namespace FSM
 {
-
-
     public class MiceFSM : FiniteStateMachine
     {
         public enum State { INITIAL, WANDER_HOME, REACH_CHEESE, EAT, REACH_HOME };
