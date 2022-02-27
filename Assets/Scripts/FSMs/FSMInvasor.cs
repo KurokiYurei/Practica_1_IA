@@ -6,25 +6,28 @@ using Steerings;
 [RequireComponent(typeof(INVASOR_Blackboard))]
 [RequireComponent(typeof(Arrive))]
 [RequireComponent(typeof(Flee))]
+[RequireComponent(typeof(KinematicState))]
 public class FSMInvasor : FiniteStateMachine
 {
     public enum State {INITIAL, HIDE, RUN_AWAY, MOVE, FIGHT};
 
     public State currentState = State.INITIAL;
-
-    private INVASOR_Blackboard blackboard;
-    
-    private Arrive arrive;
-	private Flee flee;
-    private float hidingTime;
-	private float fightingTime;
+	private KinematicState KS;
+    private INVASOR_Blackboard blackboard;	
+	public Arrive arrive;
+	public Flee flee;
+    public float hidingTime;
+	public float fightingTime;
+	public float respawnTime;
     // Start is called before the first frame update
     void Start()
     {
         arrive = GetComponent<Arrive>();
+		flee = GetComponent<Flee>();
         blackboard = GetComponent<INVASOR_Blackboard>();
+		KS = GetComponent <KinematicState>();
 
-        arrive.enabled = false;
+		arrive.enabled = false;
     }
 
     public override void Exit()
@@ -45,28 +48,27 @@ public class FSMInvasor : FiniteStateMachine
         switch(currentState)
         {
 			case State.INITIAL:
-				gameObject.transform.position = blackboard.spawnPoint.transform.position;
-				ChangeState(State.MOVE);
+				Respawn();
+				ChangeState(State.MOVE);				
 				break;
 			case State.HIDE:
 				if(hidingTime >= blackboard.maxHidingTime)
                 {
-					ChangeState(State.MOVE);
-                }
+					Respawn();
+					ChangeState(State.MOVE);					
+				}
 				hidingTime += Time.deltaTime;
 				break;
 			case State.RUN_AWAY:
 				if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) > blackboard.minDistanceToHide)
-                {
-					gameObject.transform.position = blackboard.spawnPoint.transform.position;
-					ChangeState(State.HIDE);
+                {					
+					ChangeState(State.HIDE);					
 				}
 				break;
 			case State.MOVE:
-				if(SensingUtils.DistanceToTarget(gameObject, blackboard.moveTarget) > blackboard.placeReachedRadius)
-                {
-					gameObject.transform.position = blackboard.spawnPoint.transform.position;
-					ChangeState(State.HIDE);
+				if(SensingUtils.DistanceToTarget(gameObject, blackboard.moveTarget) < blackboard.placeReachedRadius)
+                {					
+					ChangeState(State.HIDE);					
 				}
 
 				if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) < blackboard.catDetectableRadius)
@@ -79,8 +81,9 @@ public class FSMInvasor : FiniteStateMachine
                 {
 					ChangeState(State.RUN_AWAY);
                 }
-				break;
-        }
+				fightingTime += Time.deltaTime;
+				break;			
+		}
     }
 
 	private void ChangeState(State newState)
@@ -125,5 +128,13 @@ public class FSMInvasor : FiniteStateMachine
 
 		} 
 		currentState = newState;
+	}
+
+	private void Respawn()
+    {
+		KS.enabled = false;
+		gameObject.transform.position = blackboard.spawnPoint.transform.position;
+		KS.position = blackboard.spawnPoint.transform.position;		
+		KS.enabled = true;
 	}
 }
