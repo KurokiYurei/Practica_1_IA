@@ -93,6 +93,7 @@ namespace FSM
                     m_arrive.enabled = false;
                     break;
                 case State.EAT:
+                    Destroy(m_cheese);
                     break;
                 case State.REACH_HOME:
                     m_arrive.enabled = false;
@@ -103,6 +104,7 @@ namespace FSM
             {
                 case State.WANDER_HOME:
                     m_wander.attractor = m_home;
+                    m_wander.enabled = true;
                     break;
                 case State.REACH_CHEESE:
                     m_arrive.target = m_cheese;
@@ -116,6 +118,8 @@ namespace FSM
                     m_arrive.enabled = true;
                     break;
             }
+
+            m_currentState = l_newState;
         }
     }
 }

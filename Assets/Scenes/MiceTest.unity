@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 239575498}
   m_Layer: 0
   m_Name: cheese
-  m_TagString: Untagged
+  m_TagString: CHEESE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,12 +332,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1985371509}
   - component: {fileID: 1985371508}
+  - component: {fileID: 1985371514}
   - component: {fileID: 1985371510}
   - component: {fileID: 1985371513}
-  - component: {fileID: 1985371512}
-  - component: {fileID: 1985371511}
+  - component: {fileID: 1985371515}
+  - component: {fileID: 1985371516}
   m_Layer: 0
-  m_Name: BATCAT
+  m_Name: mice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,39 +423,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd97df895ddcbf4b878f56207728ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 2
+  maxAcceleration: 100
   maxSpeed: 10
-  maxAngularAcceleration: 45
+  maxAngularAcceleration: 450
   maxAngularSpeed: 45
   position: {x: 0, y: 0, z: 0}
   orientation: 0
   linearVelocity: {x: 0, y: 0, z: 0}
   angularSpeed: 0
---- !u!114 &1985371511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985371507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f32e1f70edd7252449c0af1cc315479f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
---- !u!114 &1985371512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985371507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58b2133978e87454c999c6e3ea900aa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1985371513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,3 +449,50 @@ MonoBehaviour:
   wanderOffset: 2
   attractor: {fileID: 756685178}
   seekWeight: 0.4
+--- !u!114 &1985371514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985371507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2b01b4b4b61114f866f7557dd41f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_currentState: 0
+  m_home: {fileID: 756685178}
+--- !u!114 &1985371515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985371507}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f5ac3e00c1ea74193c856a2507bb18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationalPolicy: 1
+  closeEnoughRadius: 1
+  slowDownRadius: 20
+  timeToDesiredSpeed: 0.1
+  target: {fileID: 0}
+--- !u!114 &1985371516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985371507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26f514a18ad46f942b2a14ee53c659cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_cheeseDetectionRadious: 10
+  m_minDistanceToEat: 1
+  m_minDistanceToSafety: 4
+  m_eatTimeout: 10

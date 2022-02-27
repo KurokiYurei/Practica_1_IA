@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - FOOD
+  - CHEESE
   layers:
   - Default
   - TransparentFX
