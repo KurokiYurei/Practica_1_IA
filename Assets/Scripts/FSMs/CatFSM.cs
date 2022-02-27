@@ -11,39 +11,44 @@ namespace FSM
         {
             INITIAL,
             WANDER,
-            SEEK_FOOD,
-            FEED,
-            REST
+            SEEK_MOUSE,
+            KILL_MOUSE
         };
 
         public State currentState = State.INITIAL;
 
         private CatBlackboard blackboard;
 
-        public GameObject food; //the food for the cat, a sardine this time
+        public GameObject mouse;
+
+        //Steerings
         private WanderAround wander;
         private Arrive arrive;
+        private Pursue pursue;
 
         private float elapsedTime;
+        private float pursueTime;
 
         void Start()
         {
             //Get the necessary steerings
             wander = GetComponent<WanderAround>();
             arrive = GetComponent<Arrive>();
+            pursue = GetComponent<Pursue>();
 
             //Get the blackboard
             blackboard = GetComponent<CatBlackboard>();
 
-            //food = GameObject.Find("sardine_2").transform.position;
-
             wander.enabled = false;
+            arrive.enabled = false;
+            pursue.enabled = false;
 
         }
         public override void Exit()
         {
             wander.enabled = false;
             arrive.enabled = false;
+            pursue.enabled = false;
             base.Exit();
         }
 
@@ -63,30 +68,54 @@ namespace FSM
 
                 case State.WANDER:
 
-                    if (true) //Food detected
+                    mouse = SensingUtils.FindInstanceWithinRadius(gameObject, "MOUSE", blackboard.mouseDetectableRadius);
+                    if (mouse != null) //If mouse close enough
                     {
-                        ChangeState(State.SEEK_FOOD);
+                        ChangeState(State.SEEK_MOUSE);
+                        break;
                     }
                     break;
 
-                case State.SEEK_FOOD:
-                    food = SensingUtils.FindInstanceWithinRadius(gameObject, "FOOD", blackboard.foodReachableRdius);
-                    if (food != null) //Food reached
+                case State.SEEK_MOUSE:
+
+                    GameObject otherMouse = SensingUtils.FindInstanceWithinRadius(gameObject, "MOUSE", blackboard.mouseDetectableRadius);
+                    if (otherMouse != null && otherMouse != mouse && SensingUtils.DistanceToTarget(gameObject, mouse) < SensingUtils.DistanceToTarget(gameObject, mouse))
                     {
-                        ChangeState(State.FEED);
+                        mouse = otherMouse;
+                        ChangeState(State.SEEK_MOUSE);
+                        break;
                     }
+
+                    if (SensingUtils.DistanceToTarget(gameObject, mouse) <= blackboard.mouseReachedRadius) //Mouse reached
+                    {
+                        ChangeState(State.KILL_MOUSE);
+                        break;
+                    }
+
+                    //if (false) //Mouse unreachable
+                    //{
+                    //    ChangeState(State.WANDER);
+                    //}
+                    //increase pursuing time
+                    pursueTime += Time.deltaTime;
                     break;
 
-                case State.FEED:
-                    if (elapsedTime >= blackboard.maxEatingTime)
+                case State.KILL_MOUSE:
+
+                    mouse = SensingUtils.FindInstanceWithinRadius(gameObject, "MOUSE", blackboard.mouseDetectableRadius);
+                    if (mouse != null) //If mouse close enough
+                    {
+                        ChangeState(State.SEEK_MOUSE);
+                        break;
+                    }
+                    else
                     {
                         ChangeState(State.WANDER);
                     }
-                    elapsedTime += Time.deltaTime;
+
+                    //Destruir el mouse
                     break;
 
-                case State.REST:
-                    break;
                 default:
                     break;
             }
@@ -95,37 +124,38 @@ namespace FSM
 
         private void ChangeState(State newState)
         {
+            //EXIT
             switch (currentState)
             {
                 case State.WANDER:
                     wander.enabled = false;
                     break;
-                case State.SEEK_FOOD:
-                    arrive.enabled = false;
+                case State.SEEK_MOUSE:
+                    pursue.enabled = false;
+                    pursue.target = null;
                     break;
-                case State.FEED:
-                    blackboard.hunger -= blackboard.foodHungerDecrement;
-                    break;
-                case State.REST:
+                case State.KILL_MOUSE:
+
                     break;
                 default:
                     break;
             }
 
+            //ENTER
             switch (newState)
             {
                 case State.WANDER:
                     wander.enabled = true;
                     break;
-                case State.SEEK_FOOD:
-                    arrive.target = food;
-                    arrive.enabled = true;
+                case State.SEEK_MOUSE:
+                    pursue.target = mouse;
+                    pursue.enabled = true;
+                    pursueTime = 0f;
                     break;
-                case State.FEED:
-                    elapsedTime = 0;
+                case State.KILL_MOUSE:
+
                     break;
-                case State.REST:
-                    break;
+
                 default:
                     break;
             }

@@ -9,4 +9,7 @@ public class CatBlackboard : MonoBehaviour
     public float hunger = 0f; //The hunger of the cat
     public float maxEatingTime = 5.0f; //Time eating
     public float foodHungerDecrement = 50.0f;
+    public float mouseDetectableRadius = 15.0f; //Radius to detect mouse
+    public float mouseReachedRadius = 2.0f; //Radius when mouse reached
+
 }
