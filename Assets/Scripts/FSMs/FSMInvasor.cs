@@ -3,138 +3,142 @@ using System.Collections.Generic;
 using UnityEngine;
 using Steerings;
 
-[RequireComponent(typeof(INVASOR_Blackboard))]
-[RequireComponent(typeof(Arrive))]
-[RequireComponent(typeof(Flee))]
-[RequireComponent(typeof(KinematicState))]
-public class FSMInvasor : FiniteStateMachine
+namespace FSM
 {
-    public enum State {INITIAL, HIDE, RUN_AWAY, MOVE, FIGHT};
+	[RequireComponent(typeof(INVASOR_Blackboard))]
+	[RequireComponent(typeof(Arrive))]
+	[RequireComponent(typeof(Flee))]
+	[RequireComponent(typeof(KinematicState))]
 
-    public State currentState = State.INITIAL;
-	private KinematicState KS;
-    private INVASOR_Blackboard blackboard;	
-	public Arrive arrive;
-	public Flee flee;
-    public float hidingTime;
-	public float fightingTime;
-	public float respawnTime;
-    // Start is called before the first frame update
-    void Start()
-    {
-        arrive = GetComponent<Arrive>();
-		flee = GetComponent<Flee>();
-        blackboard = GetComponent<INVASOR_Blackboard>();
-		KS = GetComponent <KinematicState>();
+	public class FSMInvasor : FiniteStateMachine
+	{
+		public enum State {INITIAL, HIDE, RUN_AWAY, MOVE, FIGHT};
 
-		arrive.enabled = false;
-    }
+		public State currentState = State.INITIAL;
+		private KinematicState KS;
+		private INVASOR_Blackboard blackboard;	
+		public Arrive arrive;
+		public Flee flee;
+		public float hidingTime;
+		public float fightingTime;	
+		// Start is called before the first frame update
+		void Start()
+		{
+			arrive = GetComponent<Arrive>();
+			flee = GetComponent<Flee>();
+			blackboard = GetComponent<INVASOR_Blackboard>();
+			KS = GetComponent <KinematicState>();
 
-    public override void Exit()
-    {
-        // stop any steering that may be enabled
-        arrive.enabled = false;        
-        base.Exit();
-    }
+			arrive.enabled = false;		
+		}
 
-    public override void ReEnter()
-    {
-        currentState = State.INITIAL;
-        base.ReEnter();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        switch(currentState)
-        {
-			case State.INITIAL:
-				Respawn();
-				ChangeState(State.MOVE);				
-				break;
-			case State.HIDE:
-				if(hidingTime >= blackboard.maxHidingTime)
-                {
+		public override void Exit()
+		{
+			// stop any steering that may be enabled
+			arrive.enabled = false;        
+			base.Exit();
+		}
+
+		public override void ReEnter()
+		{
+			currentState = State.INITIAL;
+			base.ReEnter();
+		}
+		// Update is called once per frame
+		void Update()
+		{
+			switch(currentState)
+			{
+				case State.INITIAL:
 					Respawn();
-					ChangeState(State.MOVE);					
-				}
-				hidingTime += Time.deltaTime;
-				break;
-			case State.RUN_AWAY:
-				if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) > blackboard.minDistanceToHide)
-                {					
-					ChangeState(State.HIDE);					
-				}
-				break;
-			case State.MOVE:
-				if(SensingUtils.DistanceToTarget(gameObject, blackboard.moveTarget) < blackboard.placeReachedRadius)
-                {					
-					ChangeState(State.HIDE);					
-				}
+					ChangeState(State.MOVE);				
+					break;
+				case State.HIDE:
+					if(hidingTime >= blackboard.maxHidingTime)
+					{
+						Respawn();
+						ChangeState(State.MOVE);					
+					}
+					hidingTime += Time.deltaTime;
+					break;
+				case State.RUN_AWAY:
+					if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) > blackboard.minDistanceToHide)
+					{					
+						ChangeState(State.HIDE);					
+					}
+					break;
+				case State.MOVE:
+					if(SensingUtils.DistanceToTarget(gameObject, blackboard.moveTarget) < blackboard.placeReachedRadius)
+					{					
+						ChangeState(State.HIDE);					
+					}
 
-				if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) < blackboard.catDetectableRadius)
-                {
-					ChangeState(State.FIGHT);
-                }
-				break;
-			case State.FIGHT:
-				if(fightingTime >= blackboard.maxFightTime)
-                {
-					ChangeState(State.RUN_AWAY);
-                }
-				fightingTime += Time.deltaTime;
-				break;			
+					if(SensingUtils.DistanceToTarget(gameObject, blackboard.cat) < blackboard.catDetectableRadius)
+					{
+						ChangeState(State.FIGHT);
+					}
+					break;
+				case State.FIGHT:
+					if(fightingTime >= blackboard.maxFightTime)
+					{
+						ChangeState(State.RUN_AWAY);
+					}
+					fightingTime += Time.deltaTime;
+					break;			
+			}
 		}
-    }
 
-	private void ChangeState(State newState)
-	{		
-		switch (this.currentState)
-		{
-			case State.HIDE:	
+		private void ChangeState(State newState)
+		{		
+			switch (this.currentState)
+			{
+				case State.HIDE:	
 				
-				break;
-			case State.RUN_AWAY:				
-				flee.enabled = false;
-				flee.target = null;
-				break;
-			case State.MOVE:
-				arrive.enabled = false;
-				arrive.target = null;
-				break;
-			case State.FIGHT:
-				arrive.enabled = false;
-				arrive.target = null;
-				break;			
-		}
+					break;
+				case State.RUN_AWAY:				
+					flee.enabled = false;
+					flee.target = null;
+					break;
+				case State.MOVE:
+					arrive.enabled = false;
+					arrive.target = null;
+					break;
+				case State.FIGHT:
+					arrive.enabled = false;
+					arrive.target = null;
+					break;			
+			}
 		
-		switch (newState)
+			switch (newState)
+			{
+				case State.HIDE:
+					hidingTime = 0f;
+					break;
+				case State.RUN_AWAY:
+					flee.target = blackboard.cat;
+					flee.enabled = true;
+					break;
+				case State.MOVE:
+					arrive.target = blackboard.moveTarget;
+					arrive.enabled = true;
+					break;
+				case State.FIGHT:
+					arrive.target = blackboard.cat;
+					arrive.enabled = true;
+					fightingTime = 0f;
+					break;			
+
+			} 
+			currentState = newState;
+		}
+
+		private void Respawn()
 		{
-			case State.HIDE:
-				hidingTime = 0f;
-				break;
-			case State.RUN_AWAY:
-				flee.target = blackboard.cat;
-				flee.enabled = true;
-				break;
-			case State.MOVE:
-				arrive.target = blackboard.moveTarget;
-				arrive.enabled = true;
-				break;
-			case State.FIGHT:
-				arrive.target = blackboard.cat;
-				arrive.enabled = true;
-				fightingTime = 0f;
-				break;			
-
-		} 
-		currentState = newState;
+			KS.enabled = false;
+			gameObject.transform.position = blackboard.spawnPoint.transform.position;
+			KS.position = blackboard.spawnPoint.transform.position;		
+			KS.enabled = true;
+		}
 	}
 
-	private void Respawn()
-    {
-		KS.enabled = false;
-		gameObject.transform.position = blackboard.spawnPoint.transform.position;
-		KS.position = blackboard.spawnPoint.transform.position;		
-		KS.enabled = true;
-	}
 }

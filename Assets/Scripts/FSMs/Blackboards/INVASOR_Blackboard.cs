@@ -5,11 +5,11 @@ using UnityEngine;
 public class INVASOR_Blackboard : MonoBehaviour
 {
     public float maxHidingTime = 10f;
-    public float maxFightTime = 5f;
-    public float catDetectableRadius = 150f;
-    public float catReachedRadius = 10f;
-    public float placeReachedRadius = 15f;
-    public float minDistanceToHide = 100f;
+    public float maxFightTime = 7f;
+    public float catDetectableRadius = 3f;
+    public float catReachedRadius = 1f;
+    public float placeReachedRadius = 1f;
+    public float minDistanceToHide = 10f;
 
     public GameObject moveTarget;
     public GameObject spawnPoint;
