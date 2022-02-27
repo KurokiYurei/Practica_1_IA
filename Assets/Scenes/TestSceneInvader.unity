@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025359042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: -7.69, z: 0}
+  m_LocalPosition: {x: 7, y: -29.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -291,7 +291,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -428,6 +428,7 @@ MonoBehaviour:
   flee: {fileID: 0}
   hidingTime: 0
   fightingTime: 0
+  visible: 0
 --- !u!114 &1826753636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,10 +474,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHidingTime: 10
   maxFightTime: 7
-  catDetectableRadius: 3
-  catReachedRadius: 1
+  catDetectableRadius: 8
+  catReachedRadius: 2
   placeReachedRadius: 1
-  minDistanceToHide: 10
+  minDistanceToHide: 30
+  windowsBounds: {x: 0, y: 0}
   moveTarget: {fileID: 2141860820}
   spawnPoint: {fileID: 1025359042}
   cat: {fileID: 784912512}
@@ -493,7 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAcceleration: 2
-  maxSpeed: 5
+  maxSpeed: 10
   maxAngularAcceleration: 45
   maxAngularSpeed: 45
   position: {x: 0, y: 0, z: 0}
@@ -524,7 +526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141860820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 8.54, z: 0}
+  m_LocalPosition: {x: 7, y: 27.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
