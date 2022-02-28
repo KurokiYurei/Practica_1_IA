@@ -81,7 +81,7 @@ namespace FSM
                     {
                         ChangeState(State.NORMAL);
                     }
-                    keepPosition.requiredAngle += Time.deltaTime;
+                    keepPosition.requiredAngle += Time.deltaTime * blackboard.fightAngleIncrement;
                     currenFightingTime += Time.deltaTime;
                     break;
                 default:

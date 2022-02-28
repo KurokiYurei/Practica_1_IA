@@ -756,6 +756,7 @@ MonoBehaviour:
   invasorDetectableRadius: 25
   invasorReachableRadius: 2
   maxFightingTime: 10
+  fightAngleIncrement: 30
   home: {fileID: 515880102}
 --- !u!114 &1985371513
 MonoBehaviour:
