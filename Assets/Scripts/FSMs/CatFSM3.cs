@@ -11,29 +11,39 @@ namespace FSM
         {
             INITIAL,
             NORMAL,
+            REACHING_INVADER,
             FIGHTING
         }
 
         private CatFSM2 catFSM_2;
-        private Pursue pursue;
+        private Arrive arrive;
+        private KeepPosition keepPosition;
         private CatBlackboard blackboard;
         public State currentState = State.INITIAL;
+
+        public float currenFightingTime;
+
+        private GameObject invader;
 
         void Start()
         {
             catFSM_2 = GetComponent<CatFSM2>();
-            catFSM_2.enabled = false;
+            keepPosition = GetComponent<KeepPosition>();
+            arrive = GetComponent<Arrive>();
+
 
             blackboard = GetComponent<CatBlackboard>();
 
-            pursue = GetComponent<Pursue>();
-            pursue.enabled = false;
+            catFSM_2.enabled = false;
+            keepPosition.enabled = false;
+            arrive.enabled = false;
         }
 
         public override void Exit()
         {
             catFSM_2.enabled = false;
-            pursue.enabled = false;
+            keepPosition.enabled = false;
+            arrive.enabled = false;
             base.Exit();
         }
 
@@ -51,8 +61,28 @@ namespace FSM
                     ChangeState(State.NORMAL);
                     break;
                 case State.NORMAL:
+                    invader = SensingUtils.FindInstanceWithinRadius(gameObject, "INVADER", blackboard.invasorDetectableRadius);
+                    if (invader != null)
+                    {
+                        ChangeState(State.REACHING_INVADER);
+                        break;
+                    }
+                    break;
+                case State.REACHING_INVADER:
+                    if (SensingUtils.DistanceToTarget(gameObject, invader) <= blackboard.invasorReachableRadius)
+                    {
+                        ChangeState(State.FIGHTING);
+                        break;
+                    }
                     break;
                 case State.FIGHTING:
+
+                    if (currenFightingTime >= blackboard.maxFightingTime)
+                    {
+                        ChangeState(State.NORMAL);
+                    }
+                    keepPosition.requiredAngle += Time.deltaTime;
+                    currenFightingTime += Time.deltaTime;
                     break;
                 default:
                     break;
@@ -67,7 +97,11 @@ namespace FSM
                 case State.NORMAL:
                     catFSM_2.Exit();
                     break;
+                case State.REACHING_INVADER:
+                    arrive.enabled = false;
+                    break;
                 case State.FIGHTING:
+                    keepPosition.enabled = false;
                     break;
                 default:
                     break;
@@ -79,11 +113,21 @@ namespace FSM
                 case State.NORMAL:
                     catFSM_2.ReEnter();
                     break;
+                case State.REACHING_INVADER:
+                    arrive.target = invader;
+                    arrive.enabled = true;
+                    break;
                 case State.FIGHTING:
+                    currenFightingTime = 0;
+                    keepPosition.requiredAngle = 0;
+                    keepPosition.target = invader;
+                    keepPosition.enabled = true;
                     break;
                 default:
                     break;
             }
+
+            currentState = newState;
         }
     }
 }

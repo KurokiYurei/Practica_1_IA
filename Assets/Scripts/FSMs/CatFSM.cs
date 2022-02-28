@@ -123,7 +123,7 @@ namespace FSM
 
         private void ChangeState(State newState)
         {
-            //EXIT
+            //EXIT logic
             switch (currentState)
             {
                 case State.WANDER:
@@ -140,7 +140,7 @@ namespace FSM
                     break;
             }
 
-            //ENTER
+            //ENTER logic
             switch (newState)
             {
                 case State.WANDER:

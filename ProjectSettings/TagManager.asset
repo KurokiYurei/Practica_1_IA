@@ -8,6 +8,8 @@ TagManager:
   - CHEESE
   - CAT
   - BOID
+  - MOUSE
+  - INVADER
   layers:
   - Default
   - TransparentFX
