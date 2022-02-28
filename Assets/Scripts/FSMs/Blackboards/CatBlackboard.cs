@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class CatBlackboard : MonoBehaviour
 {
-    public float maxRestingTime = 3.0f; //Cat resting time
-    public float foodReachableRdius = 25.0f;//Food reachable
-    public float hunger = 0f; //The hunger of the cat
+    public float foodDetectableRadius = 25.0f;//Food detectable
+    public float foodReachableRadius = 2.0f;//Food reachable
+    public float hunger = 80f;
+    public float minHunger = 0f; //The hunger of the cat
+    public float maxHunger = 80f;
     public float maxEatingTime = 5.0f; //Time eating
-    public float foodHungerDecrement = 50.0f;
+    public float hungerDecrement = 2.0f;
+    public float energy = 80f;
+    public float minEnergy = 0f;
+    public float maxEnergy = 80f;
+    public float energyDecrement = 2.0f;
+    public float maxRestingTime = 10.0f; //Cat resting time
     public float mouseDetectableRadius = 15.0f; //Radius to detect mouse
     public float mouseReachedRadius = 2.0f; //Radius when mouse reached
-
+    public float homeReachedRadius = 2.0f;
+    public GameObject home;
 }

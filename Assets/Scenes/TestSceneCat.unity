@@ -291,6 +291,90 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1662404142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1662404144}
+  - component: {fileID: 1662404143}
+  m_Layer: 0
+  m_Name: sardine_2
+  m_TagString: FOOD
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1662404143
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662404142}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 6d86a5161b4cc8a4fa4e131fa72675b9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.4, y: 2.15}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1662404144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662404142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.133181, y: -7.99046, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1689639751
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +496,7 @@ GameObject:
   - component: {fileID: 1985371515}
   - component: {fileID: 1985371512}
   - component: {fileID: 1985371511}
+  - component: {fileID: 1985371516}
   m_Layer: 0
   m_Name: BATCAT
   m_TagString: Untagged
@@ -500,12 +585,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAcceleration: 2
   maxSpeed: 10
-  maxAngularAcceleration: 45
-  maxAngularSpeed: 45
+  maxAngularAcceleration: 90
+  maxAngularSpeed: 90
   position: {x: 0, y: 0, z: 0}
   orientation: 0
   linearVelocity: {x: 0, y: 0, z: 0}
-  angularSpeed: 0
+  angularSpeed: 1000
 --- !u!114 &1985371511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,13 +617,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b2133978e87454c999c6e3ea900aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRestingTime: 3
-  foodReachableRdius: 25
-  hunger: 0
+  foodDetectableRadius: 25
+  foodReachableRadius: 3
+  hunger: 80
+  minHunger: 0
+  maxHunger: 80
   maxEatingTime: 5
-  foodHungerDecrement: 50
+  hungerDecrement: 2
+  energy: 80
+  minEnergy: 0
+  maxEnergy: 80
+  energyDecrement: 2
+  maxRestingTime: 10
   mouseDetectableRadius: 15
   mouseReachedRadius: 2
+  homeReachedRadius: 3
+  home: {fileID: 515880102}
 --- !u!114 &1985371513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,10 +646,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationalPolicy: 1
-  wanderRate: 30
+  wanderRate: 10
   wanderRadius: 1.5
   wanderOffset: 5
-  attractor: {fileID: 515880102}
+  attractor: {fileID: 0}
   seekWeight: 0.8
 --- !u!114 &1985371514
 MonoBehaviour:
@@ -570,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationalPolicy: 1
-  closeEnoughRadius: 5
+  closeEnoughRadius: 1
   slowDownRadius: 20
   timeToDesiredSpeed: 0.1
   target: {fileID: 0}
@@ -589,3 +683,16 @@ MonoBehaviour:
   rotationalPolicy: 1
   maxPredictionTime: 0
   target: {fileID: 0}
+--- !u!114 &1985371516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985371507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ba351581180ab4c9edab22d770a333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0

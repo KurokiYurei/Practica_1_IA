@@ -10,9 +10,10 @@ namespace FSM
         public enum State
         {
             INITIAL,
-            CAT_FSM_1,
-            SEEK_FOOD,
+            NORMAL,
+            REACHING_FOOD,
             FEED,
+            REACHING_HOME,
             REST
         }
 
@@ -22,6 +23,12 @@ namespace FSM
         private Arrive arrive;
 
         private CatBlackboard blackboard;
+
+        private float currentFeedingTime;
+        private float currentRestingTime;
+        private GameObject food;
+
+
         void Start()
         {
             catFSM_1 = GetComponent<CatFSM>();
@@ -35,11 +42,14 @@ namespace FSM
 
         public override void Exit()
         {
+            catFSM_1.enabled = false;
+            arrive.enabled = false;
             base.Exit();
         }
 
         public override void ReEnter()
         {
+            currentState = State.INITIAL;
             base.ReEnter();
         }
 
@@ -48,15 +58,55 @@ namespace FSM
             switch (currentState)
             {
                 case State.INITIAL:
-                    ChangeState(State.CAT_FSM_1);
+                    ChangeState(State.NORMAL);
                     break;
-                case State.CAT_FSM_1:
+                case State.NORMAL:
+                    if (blackboard.hunger <= blackboard.minHunger)
+                    {
+                        food = SensingUtils.FindInstanceWithinRadius(gameObject, "FOOD", blackboard.foodDetectableRadius);
+                        if (food != null)
+                        {
+                            ChangeState(State.REACHING_FOOD);
+                            break;
+                        }
+                    }
+                    if(blackboard.energy <= blackboard.minEnergy)
+                    {
+                        ChangeState(State.REACHING_HOME);
+                        break;
+                    }
+                    blackboard.hunger -= blackboard.hungerDecrement * Time.deltaTime;
+                    blackboard.energy -= blackboard.energyDecrement * Time.deltaTime;
                     break;
-                case State.SEEK_FOOD:
+                case State.REACHING_FOOD:
+                    if(SensingUtils.DistanceToTarget(gameObject, food) <= blackboard.foodReachableRadius)
+                    {
+                        ChangeState(State.FEED);
+                        break;
+                    }
                     break;
                 case State.FEED:
+                    if (currentFeedingTime >= blackboard.maxEatingTime)
+                    {
+                        ChangeState(State.NORMAL);
+                        break;
+                    }
+                    currentFeedingTime += Time.deltaTime;
+                    break;
+                case State.REACHING_HOME:
+                    if (SensingUtils.DistanceToTarget(gameObject, blackboard.home) <= blackboard.homeReachedRadius)
+                    {
+                        ChangeState(State.REST);
+                        break;
+                    }
                     break;
                 case State.REST:
+                    if (currentRestingTime >= blackboard.maxRestingTime)
+                    {
+                        ChangeState(State.NORMAL);
+                        break;
+                    }
+                    currentRestingTime += Time.deltaTime;
                     break;
                 default:
                     break;
@@ -68,15 +118,20 @@ namespace FSM
             //exit logic
             switch (currentState)
             {
-                case State.INITIAL:
+                case State.NORMAL:
+                    catFSM_1.Exit();
                     break;
-                case State.CAT_FSM_1:
-                    break;
-                case State.SEEK_FOOD:
+                case State.REACHING_FOOD:
+                    arrive.enabled = false;
                     break;
                 case State.FEED:
+                    blackboard.hunger = blackboard.maxHunger;
+                    break;
+                case State.REACHING_HOME:
+                    arrive.enabled = false;
                     break;
                 case State.REST:
+                    blackboard.energy = blackboard.maxEnergy;
                     break;
                 default:
                     break;
@@ -85,20 +140,27 @@ namespace FSM
             //enter logic
             switch (newState)
             {
-                case State.INITIAL:
+                case State.NORMAL:
+                    catFSM_1.ReEnter();
                     break;
-                case State.CAT_FSM_1:
-                    break;
-                case State.SEEK_FOOD:
+                case State.REACHING_FOOD:
+                    arrive.target = food;
+                    arrive.enabled = true;
                     break;
                 case State.FEED:
+                    currentFeedingTime = 0;
+                    break;
+                case State.REACHING_HOME:
+                    arrive.target = blackboard.home;
+                    arrive.enabled = true;
                     break;
                 case State.REST:
+                    currentRestingTime = 0;
                     break;
                 default:
                     break;
             }
-
+            currentState = newState;
         }
     }
 }

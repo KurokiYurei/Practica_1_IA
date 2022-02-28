@@ -67,7 +67,6 @@ namespace FSM
                     break;
 
                 case State.WANDER:
-
                     mouse = SensingUtils.FindInstanceWithinRadius(gameObject, "MOUSE", blackboard.mouseDetectableRadius);
                     if (mouse != null) //If mouse close enough
                     {
@@ -145,6 +144,7 @@ namespace FSM
             switch (newState)
             {
                 case State.WANDER:
+                    wander.attractor = blackboard.home;
                     wander.enabled = true;
                     break;
                 case State.SEEK_MOUSE:
