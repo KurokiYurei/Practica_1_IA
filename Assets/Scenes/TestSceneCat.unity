@@ -583,10 +583,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd97df895ddcbf4b878f56207728ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 2
+  maxAcceleration: 20
   maxSpeed: 10
-  maxAngularAcceleration: 90
-  maxAngularSpeed: 90
+  maxAngularAcceleration: 360
+  maxAngularSpeed: 180
   position: {x: 0, y: 0, z: 0}
   orientation: 0
   linearVelocity: {x: 0, y: 0, z: 0}
@@ -650,7 +650,7 @@ MonoBehaviour:
   wanderRadius: 1.5
   wanderOffset: 5
   attractor: {fileID: 0}
-  seekWeight: 0.8
+  seekWeight: 0.5
 --- !u!114 &1985371514
 MonoBehaviour:
   m_ObjectHideFlags: 0
