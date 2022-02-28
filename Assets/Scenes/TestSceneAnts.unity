@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572685404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.4, y: -95.2, z: -3.6594014}
+  m_LocalPosition: {x: -18.4, y: -88.3, z: -3.6594014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -308,6 +308,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8699642653340850664, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642653340850664, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
@@ -315,14 +319,42 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1170628492}
+    - target: {fileID: 8699642653340850667, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642653340850678, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: maxAcceleration
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642653805365801, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1170628492}
+    - target: {fileID: 8699642653805365803, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: maxAcceleration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642653805365805, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642653805365805, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
+    - target: {fileID: 8699642653906854984, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642653906854995, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: maxAcceleration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642653906854997, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642653906854997, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
@@ -332,6 +364,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1170628492}
     - target: {fileID: 8699642654009127473, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642654009127473, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
@@ -339,6 +375,22 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1170628492}
+    - target: {fileID: 8699642654009127476, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642654009127487, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: maxAcceleration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642654447832122, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: maxAcceleration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642654447832124, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642654447832124, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
@@ -347,6 +399,10 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1170628492}
+    - target: {fileID: 8699642654447832127, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642655025611227, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -395,6 +451,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: AntsFlook
       objectReference: {fileID: 0}
+    - target: {fileID: 8699642655074872425, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642655074872436, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: maxAcceleration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642655074872438, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642655074872438, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
@@ -403,6 +471,14 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1170628492}
+    - target: {fileID: 8699642655247281232, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: maxAcceleration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642655247281234, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642655247281234, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
@@ -411,5 +487,9 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1170628492}
+    - target: {fileID: 8699642655247281237, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}

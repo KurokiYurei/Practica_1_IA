@@ -24,6 +24,8 @@ namespace FSM
             flockingAround = GetComponent<FlockingAround>();
             closeToCheeseSpawnerDistance = 2.0f;
             antFSM = GetComponent<AntsFSM>();
+            currentState = State.LVL1FSM;
+            transportingCheese = false;
         }
 
         public override void Exit()
@@ -62,6 +64,7 @@ namespace FSM
                 default:
                     break;
             }
+            Debug.Log("Lvl 2 is: " + currentState);
         }
 
         private void ChangeState(State newState)
@@ -74,6 +77,7 @@ namespace FSM
 
                 case State.LVL1FSM:
                     transportingCheese = false;
+                    antFSM.Exit();
                     break;
 
                 default:

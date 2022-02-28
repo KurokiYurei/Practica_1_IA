@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1284646481}
+    - target: {fileID: 8699642653340850667, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642653340850679, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: attractor
       value: 
@@ -150,6 +154,10 @@ PrefabInstance:
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 1079942747}
+    - target: {fileID: 8699642653906854984, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642653906854996, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: attractor
       value: 
@@ -174,6 +182,14 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1284646481}
+    - target: {fileID: 8699642654009127476, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699642654189474624, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: FOOD
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642654447832123, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: attractor
       value: 
@@ -186,6 +202,10 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1284646481}
+    - target: {fileID: 8699642654447832127, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642655025611227, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -234,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AntsFlook
       objectReference: {fileID: 0}
+    - target: {fileID: 8699642655074872425, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
     - target: {fileID: 8699642655074872437, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: attractor
       value: 
@@ -258,6 +282,10 @@ PrefabInstance:
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1284646481}
+    - target: {fileID: 8699642655247281237, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: m_TagString
+      value: BOID
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
 --- !u!1 &519420028

@@ -25,6 +25,7 @@ namespace FSM
 
             closeToTargetDistance = 10.0f;
             closeToFollowTargetDistance = 30.0f;
+            currentState = State.INITIAL;
         }
 
         public override void Exit()
@@ -58,7 +59,7 @@ namespace FSM
                 case State.GO_TO_TARGET:
                     if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > closeToFollowTargetDistance)
                     {
-                        flockingAround.seekWeight = 0.3f;
+                        flockingAround.seekWeight = 0.15f;
                         ChangeState(State.WANDERING);
                     }
                     if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= closeToTargetDistance)
@@ -71,6 +72,7 @@ namespace FSM
                 default:
                     break;
             }
+            Debug.Log("Lvl 1 is: " + currentState);
         }
 
         private void ChangeState(State newState)
