@@ -34,6 +34,7 @@ public class DoorButtonActivator : MonoBehaviour
                 door.GetComponent<SpriteRenderer>().color = Color.red;
                 door.tag = "DOOR";
                 openDoor = false;
+                opened = false;
                 timer = 0;
             }
         }

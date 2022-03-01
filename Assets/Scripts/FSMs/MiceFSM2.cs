@@ -141,7 +141,6 @@ namespace FSM
             m_button = SensingUtils.FindInstanceWithinRadius(gameObject, "BUTTON", m_blackboard.m_minDistanceToInteract);
             if (m_button != null)
             {
-                Debug.Log("BUTTON");
                 DoorButtonActivator l_buttonInteract = m_button.GetComponent<DoorButtonActivator>();
                 l_buttonInteract.openDoor = true;
             }
@@ -152,7 +151,7 @@ namespace FSM
             m_door = SensingUtils.FindInstanceWithinRadius(gameObject, "DOOR_OPENED", m_blackboard.m_minDistanceToInteract);
             if (m_door != null)
             {
-                Debug.Log("DOOR");
+                HUDController.HUDinstance.AddSaved();
                 Respawn();
             }
         }

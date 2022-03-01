@@ -21,6 +21,7 @@ namespace FSM
         private KeepPosition keepPosition;
         private CatBlackboard blackboard;
         public State currentState = State.INITIAL;
+        public AudioSource fightAudio;
 
         public float currenFightingTime;
 
@@ -126,6 +127,7 @@ namespace FSM
                     arrive.enabled = true;
                     break;
                 case State.FIGHTING:
+                    fightAudio.Play();
                     currenFightingTime = 0;
                     keepPosition.requiredAngle = 0;
                     keepPosition.target = invader;

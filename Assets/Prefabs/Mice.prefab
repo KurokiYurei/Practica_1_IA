@@ -216,6 +216,6 @@ MonoBehaviour:
   m_minDistanceToSafety: 4
   m_minDistanceToGetCaught: 5
   m_minDistanceToEat: 1
-  m_minDistanceToInteract: 11
+  m_minDistanceToInteract: 4
   m_eatTimeout: 20
   m_minDistanceToDanger: 10
