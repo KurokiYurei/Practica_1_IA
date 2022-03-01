@@ -51,6 +51,7 @@ namespace FSM
                     if (transportingCheese)
                     {
                         ChangeState(State.LVL1FSM);
+                        break;
                     }
                     break;
 
@@ -58,6 +59,7 @@ namespace FSM
                     if (cheese.activeSelf == false)
                     {
                         ChangeState(State.GO_TO_CHEESE);
+                        break;
                     }
                     break;
 

@@ -56,12 +56,14 @@ namespace FSM
                     if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= blackboard.closeToFollowTargetDistance)
                     {
                         ChangeState(State.GO_TO_TARGET);
+                        break;
                     }
                     break;
                 case State.WANDER_CURSOR:
                     if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > blackboard.closeToTargetDistance)
                     {
                         ChangeState(State.GO_TO_TARGET);
+                        break;
                     }
                     break;
 
@@ -69,10 +71,12 @@ namespace FSM
                     if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > blackboard.closeToFollowTargetDistance)
                     {
                         ChangeState(State.WANDERING);
+                        break;
                     }
                     if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= blackboard.closeToTargetDistance)
                     {
                         ChangeState(State.WANDER_CURSOR);
+                        break;
                     }
                     break;
 
