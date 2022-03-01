@@ -13,7 +13,7 @@ public class DoorButtonActivator : MonoBehaviour
     private void Start()
     {
         timer = 0;
-        maxTime = 15;
+        maxTime = 15.0f;
         openDoor = false;
         opened = false;
     }
@@ -21,7 +21,7 @@ public class DoorButtonActivator : MonoBehaviour
     {
         if (openDoor)
         {
-            timer++;
+            timer =+ Time.deltaTime;
             if (!opened)
             {
                 door.SetActive(true);
