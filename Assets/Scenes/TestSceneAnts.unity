@@ -329,6 +329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UserCursor
       objectReference: {fileID: 0}
+    - target: {fileID: 7161924369634878095, guid: cf2b85934f94b0e46ae45e67a5a440ff, type: 3}
+      propertyPath: m_TagString
+      value: MOUSE
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf2b85934f94b0e46ae45e67a5a440ff, type: 3}
 --- !u!1001 &8699642654654757479
