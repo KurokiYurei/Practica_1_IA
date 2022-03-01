@@ -10,6 +10,7 @@ TagManager:
   - BOID
   - MOUSE
   - INVADER
+  - FLEEING_INVADER
   layers:
   - Default
   - TransparentFX

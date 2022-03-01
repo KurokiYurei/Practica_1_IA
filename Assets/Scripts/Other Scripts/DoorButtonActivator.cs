@@ -29,6 +29,7 @@ public class DoorButtonActivator : MonoBehaviour
             }
             if(timer >= maxTime)
             {
+                door.SetActive(false);
                 openDoor = false;
             }
         }

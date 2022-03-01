@@ -598,7 +598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805004016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.7, y: 31.1, z: 0}
+  m_LocalPosition: {x: 56.1, y: 46.3, z: 0}
   m_LocalScale: {x: 6.6303, y: 6.6303, z: 6.6303}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -680,6 +680,22 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1438948014}
+    - target: {fileID: 6879658769474867172, guid: a5fc7b7c558ecb74db2d6c1620717e11, type: 3}
+      propertyPath: maxFightTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879658769474867172, guid: a5fc7b7c558ecb74db2d6c1620717e11, type: 3}
+      propertyPath: maxHidingTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879658769474867172, guid: a5fc7b7c558ecb74db2d6c1620717e11, type: 3}
+      propertyPath: catReachedRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879658769474867172, guid: a5fc7b7c558ecb74db2d6c1620717e11, type: 3}
+      propertyPath: catDetectableRadius
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5fc7b7c558ecb74db2d6c1620717e11, type: 3}
 --- !u!1 &1220857343
@@ -954,7 +970,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662404142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.6, y: -7.99046, z: 0}
+  m_LocalPosition: {x: 25.1, y: -5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1431,21 +1447,22 @@ MonoBehaviour:
   foodReachableRadius: 3
   hunger: 80
   minHunger: 0
-  maxHunger: 80
+  maxHunger: 60
   maxEatingTime: 5
-  hungerDecrement: 0
+  hungerDecrement: 3
   energy: 80
   minEnergy: 0
-  maxEnergy: 80
-  energyDecrement: 0
+  maxEnergy: 90
+  energyDecrement: 1
   maxRestingTime: 10
   mouseDetectableRadius: 15
   mouseReachedRadius: 2
   homeReachedRadius: 3
-  invasorDetectableRadius: 25
-  invasorReachableRadius: 2
+  invasorDetectableRadius: 20
+  invasorReachableRadius: 5
   maxFightingTime: 10
-  fightAngleIncrement: 50
+  maxKillingTime: 5
+  fightAngleIncrement: 150
   home: {fileID: 515880102}
 --- !u!114 &1985371514
 MonoBehaviour:

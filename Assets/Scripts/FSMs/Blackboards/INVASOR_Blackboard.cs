@@ -15,15 +15,4 @@ public class INVASOR_Blackboard : MonoBehaviour
     public GameObject moveTarget;
     public GameObject spawnPoint;
     public GameObject cat;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

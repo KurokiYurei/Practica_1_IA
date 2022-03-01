@@ -28,6 +28,8 @@ namespace FSM
 
         private float elapsedTime;
         private float pursueTime;
+        private float currentKillingTime;
+
 
         void Start()
         {
@@ -91,35 +93,20 @@ namespace FSM
                         break;
                     }
 
-                    //if (false) //Mouse unreachable
-                    //{
-                    //    ChangeState(State.WANDER);
-                    //}
-                    //increase pursuing time
                     pursueTime += Time.deltaTime;
                     break;
 
                 case State.KILL_MOUSE:
-
                     //Destruir el mouse
-                    //Destroy(mouse);
-                    //mouse = null;
                     //Posar la posició de la safe zone
-                    mouse.transform.position = new Vector3(0, 0, 0);
-
-                    ChangeState(State.WANDER);
-                    //mouse = SensingUtils.FindInstanceWithinRadius(gameObject, "MOUSE", blackboard.mouseDetectableRadius);
-                    //if (mouse != null) //If mouse close enough
-                    //{
-                    //    ChangeState(State.SEEK_MOUSE);
-                    //    break;
-                    //}
-                    //else
-                    //{
-                    //    ChangeState(State.WANDER);
-                    //}
+                    //mouse.transform.position = new Vector3(0, 0, 0);
+                    if (currentKillingTime >= blackboard.maxKillingTime)
+                    {
+                        ChangeState(State.WANDER);
+                        break;
+                    }
+                    currentKillingTime += Time.deltaTime;
                     break;
-
                 default:
                     break;
             }
@@ -139,7 +126,6 @@ namespace FSM
                     pursue.target = null;
                     break;
                 case State.KILL_MOUSE:
-
                     break;
                 default:
                     break;
@@ -158,7 +144,7 @@ namespace FSM
                     pursueTime = 0f;
                     break;
                 case State.KILL_MOUSE:
-
+                    currentKillingTime = 0;
                     break;
 
                 default:

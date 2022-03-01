@@ -59,7 +59,7 @@ namespace FSM
                     }
                     break;
                 case State.REACH_CHEESE:
-                    if (SensingUtils.DistanceToTarget(gameObject, m_cheese) <= m_blackboard.m_minDistanceToEat)
+                    if (SensingUtils.DistanceToTarget(gameObject, m_cheese) <= m_blackboard.m_minDistanceToInteract)
                     {
                         ChangeState(State.EAT);
                     }
@@ -91,7 +91,7 @@ namespace FSM
                     m_arrive.enabled = false;
                     break;
                 case State.EAT:
-                    Destroy(m_cheese);
+                    m_cheese.SetActive(false);
                     break;
                 case State.REACH_HOME:
                     m_arrive.enabled = false;
