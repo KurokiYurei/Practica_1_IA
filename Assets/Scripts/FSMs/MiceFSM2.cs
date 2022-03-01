@@ -19,7 +19,7 @@ namespace FSM
         public GameObject m_button;
         public GameObject m_door;
 
-        private Flee m_flee;
+        private FleePlusAvoid m_flee;
         private MiceFSM m_miceFSM;
 
         private Vector3 m_startPosition;
@@ -28,7 +28,7 @@ namespace FSM
 
         void Start()
         {
-            m_flee = GetComponent<Flee>();
+            m_flee = GetComponent<FleePlusAvoid>();
             m_miceFSM = GetComponent<MiceFSM>();
             m_blackboard = GetComponent<MiceBlackboard>();
 
@@ -62,20 +62,36 @@ namespace FSM
                     if (m_cat != null)
                     {
                         ChangeState(State.FLEE);
+                        break;
                     }
                     break;
                 case State.FLEE:
                     if (SensingUtils.DistanceToTarget(gameObject, m_cat) > m_blackboard.m_minDistanceToDanger)
                     {
                         ChangeState(State.NORMAL);
+                        break;
+                    }
+                    if (SensingUtils.DistanceToTarget(gameObject, m_cat) <= m_blackboard.m_minDistanceToGetCaught)
+                    {
+                        ChangeState(State.TRAPPED);
+                        break;
                     }
                     break;
                 case State.TRAPPED:
-
+                    if(gameObject.tag != "MOUSE")
+                    {
+                        Debug.Log("killed");
+                        ChangeState(State.RESPAWN);
+                        break;
+                    }
+                    if (SensingUtils.DistanceToTarget(gameObject, m_cat) > m_blackboard.m_minDistanceToGetCaught)
+                    {
+                        ChangeState(State.NORMAL);
+                        break;
+                    }
                     break;
                 case State.RESPAWN:
                     gameObject.GetComponent<KinematicState>().position = m_startPosition;
-
                     ChangeState(State.NORMAL);
                     break;
             }
@@ -95,8 +111,7 @@ namespace FSM
                     break;
                 case State.TRAPPED:
                     break;
-                case State.RESPAWN:
-
+                case State.RESPAWN:     
                     break;
             }
 
@@ -134,7 +149,7 @@ namespace FSM
 
         private void CheckDoor()
         {
-            m_door = SensingUtils.FindInstanceWithinRadius(gameObject, "DOOR", m_blackboard.m_minDistanceToInteract);
+            m_door = SensingUtils.FindInstanceWithinRadius(gameObject, "DOOR_OPENED", m_blackboard.m_minDistanceToInteract);
             if (m_door != null)
             {
                 Debug.Log("DOOR");
@@ -144,8 +159,7 @@ namespace FSM
 
         public void Respawn()
         {
-            Debug.Log("RESPAWN");
-            ChangeState(State.RESPAWN);
+            gameObject.GetComponent<KinematicState>().position = m_startPosition;
         }
     }
 }

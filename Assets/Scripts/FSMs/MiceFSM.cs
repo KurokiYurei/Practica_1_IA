@@ -18,13 +18,13 @@ namespace FSM
 
         private GameObject m_cheese;
         private Arrive m_arrive;
-        private WanderAround m_wander;
+        private WanderAroundPlusAvoid m_wander;
         private float m_elapsedTime;
 
         void Start()
         {
             m_arrive = GetComponent<Arrive>();
-            m_wander = GetComponent<WanderAround>();
+            m_wander = GetComponent<WanderAroundPlusAvoid>();
             m_blackboard = GetComponent<MiceBlackboard>();
 
             m_arrive.enabled = false;
@@ -56,12 +56,14 @@ namespace FSM
                     if (m_cheese != null)
                     {
                         ChangeState(State.REACH_CHEESE);
+                        break;
                     }
                     break;
                 case State.REACH_CHEESE:
                     if (SensingUtils.DistanceToTarget(gameObject, m_cheese) <= m_blackboard.m_minDistanceToEat)
                     {
                         ChangeState(State.EAT);
+                        break;
                     }
                     break;
                 case State.EAT:
@@ -69,12 +71,14 @@ namespace FSM
                     if (m_elapsedTime > m_blackboard.m_eatTimeout)
                     {
                         ChangeState(State.REACH_HOME);
+                        break;
                     }
                     break;
                 case State.REACH_HOME:
                     if (SensingUtils.DistanceToTarget(gameObject, m_home) <= m_blackboard.m_minDistanceToSafety)
                     {
                         ChangeState(State.WANDER_HOME);
+                        break;
                     }
                     break;
             }
@@ -101,6 +105,7 @@ namespace FSM
             switch (l_newState)
             {
                 case State.WANDER_HOME:
+                    gameObject.tag = "MOUSE";
                     m_wander.attractor = m_home;
                     m_wander.enabled = true;
                     break;

@@ -103,7 +103,7 @@ namespace FSM
                     //mouse.transform.position = new Vector3(0, 0, 0);
                     if (currentKillingTime >= blackboard.maxKillingTime)
                     {
-                        mouse.GetComponent<MiceFSM2>().Respawn();
+                        mouse.tag = "MOUSE_CAUGHT";
                         ChangeState(State.WANDER);
                         break;
                     }
