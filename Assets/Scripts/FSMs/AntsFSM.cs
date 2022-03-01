@@ -82,6 +82,9 @@ namespace FSM
         {
             switch (currentState)
             {
+                case State.INITIAL:
+                    break;
+
                 case State.WANDERING:
                     flockingAround.enabled = false;
                     break;
@@ -100,6 +103,9 @@ namespace FSM
 
             switch (newState)
             {
+                case State.INITIAL:
+                    break;
+
                 case State.WANDERING:
                     flockingAround.seekWeight = 0.15f;
                     flockingAround.attractor = antsWanderPoint;
