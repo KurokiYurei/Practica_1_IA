@@ -76,16 +76,12 @@ namespace FSM
                 default:
                     break;
             }
-            Debug.Log("Lvl 1 is: " + currentState);
         }
 
         private void ChangeState(State newState)
         {
             switch (currentState)
             {
-                case State.INITIAL:
-                    break;
-
                 case State.WANDERING:
                     flockingAround.enabled = false;
                     break;
@@ -104,9 +100,6 @@ namespace FSM
 
             switch (newState)
             {
-                case State.INITIAL:
-                    break;
-
                 case State.WANDERING:
                     flockingAround.seekWeight = 0.15f;
                     flockingAround.attractor = antsWanderPoint;

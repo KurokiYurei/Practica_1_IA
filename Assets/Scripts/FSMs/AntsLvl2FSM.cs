@@ -64,7 +64,6 @@ namespace FSM
                 default:
                     break;
             }
-            Debug.Log("Lvl 2 is: " + currentState);
         }
 
         private void ChangeState(State newState)
