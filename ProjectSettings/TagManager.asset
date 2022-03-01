@@ -13,7 +13,6 @@ TagManager:
   - FLEEING_INVADER
   - BUTTON
   - DOOR
-  - SAFE_MOUSE
   layers:
   - Default
   - TransparentFX
