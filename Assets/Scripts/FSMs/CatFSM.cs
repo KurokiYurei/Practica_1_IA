@@ -94,6 +94,11 @@ namespace FSM
                         break;
                     }
 
+                    if (pursueTime >= blackboard.maxPursuingTime)
+                    {
+                        ChangeState(State.WANDER);
+                        break;
+                    }
                     pursueTime += Time.deltaTime;
                     break;
 
