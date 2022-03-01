@@ -15,6 +15,7 @@ namespace FSM
             FIGHTING
         }
 
+        private CatFSM catFSM_1;
         private CatFSM2 catFSM_2;
         private Arrive arrive;
         private KeepPosition keepPosition;
@@ -27,6 +28,7 @@ namespace FSM
 
         void Start()
         {
+            catFSM_1 = GetComponent<CatFSM>();
             catFSM_2 = GetComponent<CatFSM2>();
             keepPosition = GetComponent<KeepPosition>();
             arrive = GetComponent<Arrive>();
@@ -34,6 +36,7 @@ namespace FSM
 
             blackboard = GetComponent<CatBlackboard>();
 
+            catFSM_1.enabled = false;
             catFSM_2.enabled = false;
             keepPosition.enabled = false;
             arrive.enabled = false;
@@ -41,6 +44,7 @@ namespace FSM
 
         public override void Exit()
         {
+            catFSM_1.enabled = false;
             catFSM_2.enabled = false;
             keepPosition.enabled = false;
             arrive.enabled = false;
@@ -95,6 +99,7 @@ namespace FSM
             switch (currentState)
             {
                 case State.NORMAL:
+                    catFSM_1.Exit();
                     catFSM_2.Exit();
                     break;
                 case State.REACHING_INVADER:

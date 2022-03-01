@@ -22,7 +22,7 @@ namespace FSM
         public GameObject mouse;
 
         //Steerings
-        private WanderAround wander;
+        private WanderAroundPlusAvoid wander;
         private Arrive arrive;
         private Pursue pursue;
 
@@ -32,7 +32,7 @@ namespace FSM
         void Start()
         {
             //Get the necessary steerings
-            wander = GetComponent<WanderAround>();
+            wander = GetComponent<WanderAroundPlusAvoid>();
             arrive = GetComponent<Arrive>();
             pursue = GetComponent<Pursue>();
 
@@ -101,18 +101,23 @@ namespace FSM
 
                 case State.KILL_MOUSE:
 
-                    mouse = SensingUtils.FindInstanceWithinRadius(gameObject, "MOUSE", blackboard.mouseDetectableRadius);
-                    if (mouse != null) //If mouse close enough
-                    {
-                        ChangeState(State.SEEK_MOUSE);
-                        break;
-                    }
-                    else
-                    {
-                        ChangeState(State.WANDER);
-                    }
-
                     //Destruir el mouse
+                    //Destroy(mouse);
+                    //mouse = null;
+                    //Posar la posició de la safe zone
+                    mouse.transform.position = new Vector3(0, 0, 0);
+
+                    ChangeState(State.WANDER);
+                    //mouse = SensingUtils.FindInstanceWithinRadius(gameObject, "MOUSE", blackboard.mouseDetectableRadius);
+                    //if (mouse != null) //If mouse close enough
+                    //{
+                    //    ChangeState(State.SEEK_MOUSE);
+                    //    break;
+                    //}
+                    //else
+                    //{
+                    //    ChangeState(State.WANDER);
+                    //}
                     break;
 
                 default:
