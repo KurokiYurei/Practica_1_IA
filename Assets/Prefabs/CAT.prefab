@@ -19,9 +19,10 @@ GameObject:
   - component: {fileID: 7857171987596251750}
   - component: {fileID: 7857171987596251757}
   - component: {fileID: 7857171988058612213}
+  - component: {fileID: 617502342}
   m_Layer: 0
   m_Name: CAT
-  m_TagString: Untagged
+  m_TagString: CAT
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 7857171987596251746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.4, y: -12.02, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d43f8136be5e4b3468ea04e8f0d349f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -105,10 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd97df895ddcbf4b878f56207728ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 10
-  maxSpeed: 5
+  maxAcceleration: 40
+  maxSpeed: 20
   maxAngularAcceleration: 360
-  maxAngularSpeed: 180
+  maxAngularSpeed: 360
   position: {x: 0, y: 0, z: 0}
   orientation: 0
   linearVelocity: {x: 0, y: 0, z: 0}
@@ -128,12 +129,12 @@ MonoBehaviour:
   rotationalPolicy: 1
   wanderRate: 30
   wanderRadius: 4
-  wanderOffset: 6
+  wanderOffset: 8
   attractor: {fileID: 0}
   seekWeight: 0.2
   showWhisker: 1
-  lookAheadLength: 10
-  avoidDistance: 10
+  lookAheadLength: 20
+  avoidDistance: 20
   secondaryWhiskerAngle: 30
   secondaryWhiskerRatio: 0.7
 --- !u!114 &7857171987596251755
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationalPolicy: 1
-  maxPredictionTime: 0
+  maxPredictionTime: 2
   target: {fileID: 0}
 --- !u!114 &7857171987596251756
 MonoBehaviour:
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationalPolicy: 1
   target: {fileID: 0}
-  requiredDistance: 5
+  requiredDistance: 10
   requiredAngle: 0
 --- !u!114 &7857171987596251753
 MonoBehaviour:
@@ -196,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b2133978e87454c999c6e3ea900aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodDetectableRadius: 25
+  foodDetectableRadius: 40
   foodReachableRadius: 3
   hunger: 60
   minHunger: 0
@@ -208,15 +209,16 @@ MonoBehaviour:
   maxEnergy: 70
   energyDecrement: 1.5
   maxRestingTime: 10
-  mouseDetectableRadius: 15
-  mouseReachedRadius: 2
   homeReachedRadius: 3
-  invasorDetectableRadius: 20
-  invasorReachableRadius: 5
-  maxFightingTime: 8
-  maxKillingTime: 5
-  fightAngleIncrement: 150
   home: {fileID: 0}
+  mouseDetectableRadius: 15
+  mouseReachedRadius: 5
+  maxPursuingTime: 3
+  maxKillingTime: 5
+  invasorDetectableRadius: 40
+  invasorReachableRadius: 20
+  maxFightingTime: 7
+  fightAngleIncrement: 150
 --- !u!114 &7857171987596251750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   mouse: {fileID: 0}
+  pursueTime: 0
 --- !u!114 &7857171987596251757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,4 +260,101 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  fightAudio: {fileID: 617502342}
   currenFightingTime: 0
+--- !u!82 &617502342
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857171987596251746}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 68469605562da7b43a623ce5fd6aef4c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

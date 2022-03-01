@@ -28,7 +28,7 @@ namespace FSM
         private Pursue pursue;
 
         private float elapsedTime;
-        private float pursueTime;
+        public float pursueTime;
         private float currentKillingTime;
 
 
@@ -79,7 +79,6 @@ namespace FSM
                     break;
 
                 case State.SEEK_MOUSE:
-
                     GameObject otherMouse = SensingUtils.FindInstanceWithinRadius(gameObject, "MOUSE", blackboard.mouseDetectableRadius);
                     if (otherMouse != null && otherMouse != mouse && SensingUtils.DistanceToTarget(gameObject, mouse) < SensingUtils.DistanceToTarget(gameObject, mouse))
                     {
@@ -87,13 +86,12 @@ namespace FSM
                         ChangeState(State.SEEK_MOUSE);
                         break;
                     }
-
                     if (SensingUtils.DistanceToTarget(gameObject, mouse) <= blackboard.mouseReachedRadius) //Mouse reached
                     {
+                        mouse.tag = "MOUSE_CAUGHT";
                         ChangeState(State.KILL_MOUSE);
                         break;
                     }
-
                     if (pursueTime >= blackboard.maxPursuingTime)
                     {
                         ChangeState(State.WANDER);
@@ -103,12 +101,8 @@ namespace FSM
                     break;
 
                 case State.KILL_MOUSE:
-                    //Destruir el mouse
-                    //Posar la posició de la safe zone
-                    //mouse.transform.position = new Vector3(0, 0, 0);
                     if (currentKillingTime >= blackboard.maxKillingTime)
-                    {
-                        mouse.tag = "MOUSE_CAUGHT";
+                    {                
                         ChangeState(State.WANDER);
                         break;
                     }
@@ -133,7 +127,6 @@ namespace FSM
                     pursue.target = null;
                     break;
                 case State.KILL_MOUSE:
-
                     break;
                 default:
                     break;
@@ -154,7 +147,6 @@ namespace FSM
                 case State.KILL_MOUSE:
                     currentKillingTime = 0;
                     break;
-
                 default:
                     break;
             }

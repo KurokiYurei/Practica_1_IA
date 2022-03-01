@@ -24,6 +24,7 @@ namespace FSM
 
         private Vector3 m_startPosition;
         private float m_startRotation;
+        public float m_currentTimeToDie;
 
 
         void Start()
@@ -71,26 +72,22 @@ namespace FSM
                         ChangeState(State.NORMAL);
                         break;
                     }
-                    if (SensingUtils.DistanceToTarget(gameObject, m_cat) <= m_blackboard.m_minDistanceToGetCaught)
+                    if(gameObject.tag != "MOUSE")
                     {
                         ChangeState(State.TRAPPED);
                         break;
                     }
                     break;
                 case State.TRAPPED:
-                    if(gameObject.tag != "MOUSE")
+                    if(m_currentTimeToDie >= m_blackboard.m_timeToDie)
                     {
-                        Debug.Log("killed");
                         ChangeState(State.RESPAWN);
                         break;
                     }
-                    if (SensingUtils.DistanceToTarget(gameObject, m_cat) > m_blackboard.m_minDistanceToGetCaught)
-                    {
-                        ChangeState(State.NORMAL);
-                        break;
-                    }
+                    m_currentTimeToDie += Time.deltaTime;
                     break;
                 case State.RESPAWN:
+                    gameObject.transform.position = m_startPosition;
                     gameObject.GetComponent<KinematicState>().position = m_startPosition;
                     ChangeState(State.NORMAL);
                     break;
@@ -127,6 +124,7 @@ namespace FSM
                     break;
                 case State.TRAPPED:
                     m_miceFSM.enabled = false;
+                    m_currentTimeToDie = 0;
                     break;
                 case State.RESPAWN:
                     m_miceFSM.enabled = false;

@@ -107,6 +107,7 @@ MonoBehaviour:
   m_cat: {fileID: 0}
   m_button: {fileID: 0}
   m_door: {fileID: 0}
+  m_currentTimeToDie: 0
 --- !u!114 &7117284672042986834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +178,7 @@ MonoBehaviour:
   wanderRadius: 0.5
   wanderOffset: 2
   attractor: {fileID: 0}
-  seekWeight: 0.4
+  seekWeight: 0.8
   showWhisker: 1
   lookAheadLength: 20
   avoidDistance: 20
@@ -219,3 +220,4 @@ MonoBehaviour:
   m_minDistanceToInteract: 4
   m_eatTimeout: 20
   m_minDistanceToDanger: 10
+  m_timeToDie: 4

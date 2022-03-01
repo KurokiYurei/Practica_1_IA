@@ -154,17 +154,18 @@ namespace FSM
             gameObject.transform.position = blackboard.spawnPoint.transform.position;
             KS.position = blackboard.spawnPoint.transform.position;
             KS.enabled = true;
-            gameObject.tag = "INVADER";
         }
 
         private void OnBecameVisible()
         {
             visible = true;
+            gameObject.tag = "INVADER";
         }
 
         private void OnBecameInvisible()
         {
             visible = false;
+            gameObject.tag = "FLEEING_INVADER";
         }
 
         /*private void OnDrawGizmos()

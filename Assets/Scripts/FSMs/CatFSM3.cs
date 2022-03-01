@@ -69,7 +69,6 @@ namespace FSM
                     invader = SensingUtils.FindInstanceWithinRadius(gameObject, "INVADER", blackboard.invasorDetectableRadius);
                     if (invader != null)
                     {
-                        print("ESTO, si, detection and that, it's not like I want to detect you");
                         ChangeState(State.REACHING_INVADER);
                         break;
                     }
@@ -86,6 +85,7 @@ namespace FSM
                     if (currenFightingTime >= blackboard.maxFightingTime)
                     {
                         ChangeState(State.NORMAL);
+                        break;
                     }
                     keepPosition.requiredAngle += Time.deltaTime * blackboard.fightAngleIncrement;
                     currenFightingTime += Time.deltaTime;
@@ -110,6 +110,7 @@ namespace FSM
                 case State.FIGHTING:
                     //keepPosition.target = null;
                     keepPosition.enabled = false;
+                    invader = null;
 
                     break;
                 default:

@@ -26,12 +26,12 @@ public class CatBlackboard : MonoBehaviour
     public float mouseDetectableRadius = 15.0f; //Radius to detect mouse
     public float mouseReachedRadius = 2.0f; //Radius when mouse reached
     public float maxPursuingTime = 5.0f; //Maximum amount of time pursuing
+    public float maxKillingTime = 5.0f;
 
     [Header("Fighting Behaviour")]
     public float invasorDetectableRadius = 15.0f; //Invasor is within detectable radius
     public float invasorReachableRadius = 2.0f; //Invasor is reachable
     public float maxFightingTime = 10.0f;
-    public float maxKillingTime = 5.0f;
     public float fightAngleIncrement = 3.0f;
 
 
