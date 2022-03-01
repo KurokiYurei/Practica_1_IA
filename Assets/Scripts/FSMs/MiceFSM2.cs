@@ -51,6 +51,7 @@ namespace FSM
         {
             CheckButton();
             CheckDoor();
+
             switch (m_currentState)
             {
                 case State.INITIAL:
