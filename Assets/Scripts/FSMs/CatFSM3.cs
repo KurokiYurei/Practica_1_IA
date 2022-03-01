@@ -21,7 +21,6 @@ namespace FSM
         private KeepPosition keepPosition;
         private CatBlackboard blackboard;
         public State currentState = State.INITIAL;
-        public AudioSource fightAudio;
 
         public float currenFightingTime;
 
@@ -33,7 +32,6 @@ namespace FSM
             catFSM_2 = GetComponent<CatFSM2>();
             keepPosition = GetComponent<KeepPosition>();
             arrive = GetComponent<Arrive>();
-
 
             blackboard = GetComponent<CatBlackboard>();
 
@@ -108,10 +106,8 @@ namespace FSM
                     arrive.enabled = false;
                     break;
                 case State.FIGHTING:
-                    //keepPosition.target = null;
                     keepPosition.enabled = false;
                     invader = null;
-
                     break;
                 default:
                     break;
@@ -128,7 +124,6 @@ namespace FSM
                     arrive.enabled = true;
                     break;
                 case State.FIGHTING:
-                    fightAudio.Play();
                     currenFightingTime = 0;
                     keepPosition.requiredAngle = 0;
                     keepPosition.target = invader;

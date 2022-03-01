@@ -86,6 +86,7 @@ namespace FSM
 
         private void ChangeState(State l_newState)
         {
+            //EXIT logic
             switch (m_currentState)
             {
                 case State.WANDER_HOME:
@@ -102,6 +103,7 @@ namespace FSM
                     break;
             }
 
+            //ENTER logic
             switch (l_newState)
             {
                 case State.WANDER_HOME:

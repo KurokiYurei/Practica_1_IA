@@ -33,6 +33,4 @@ public class CatBlackboard : MonoBehaviour
     public float invasorReachableRadius = 2.0f; //Invasor is reachable
     public float maxFightingTime = 10.0f;
     public float fightAngleIncrement = 3.0f;
-
-
 }

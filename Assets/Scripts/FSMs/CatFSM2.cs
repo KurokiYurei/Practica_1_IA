@@ -70,7 +70,7 @@ namespace FSM
                             break;
                         }
                     }
-                    if(blackboard.energy <= blackboard.minEnergy)
+                    if (blackboard.energy <= blackboard.minEnergy)
                     {
                         ChangeState(State.REACHING_HOME);
                         break;
@@ -79,7 +79,7 @@ namespace FSM
                     blackboard.energy -= blackboard.energyDecrement * Time.deltaTime;
                     break;
                 case State.REACHING_FOOD:
-                    if(SensingUtils.DistanceToTarget(gameObject, food) <= blackboard.foodReachableRadius)
+                    if (SensingUtils.DistanceToTarget(gameObject, food) <= blackboard.foodReachableRadius)
                     {
                         ChangeState(State.FEED);
                         break;
@@ -115,7 +115,7 @@ namespace FSM
 
         private void ChangeState(State newState)
         {
-            //exit logic
+            //EXIT logic
             switch (currentState)
             {
                 case State.NORMAL:
@@ -137,7 +137,7 @@ namespace FSM
                     break;
             }
 
-            //enter logic
+            //ENTER logic
             switch (newState)
             {
                 case State.NORMAL:

@@ -17,8 +17,9 @@ namespace FSM
         public float hidingTime;
         public float fightingTime;
 
+        public AudioSource fightAudio;
+
         public bool visible;
-        // Start is called before the first frame update
         void Start()
         {
             arrive = GetComponent<Arrive>();
@@ -43,7 +44,7 @@ namespace FSM
             currentState = State.INITIAL;
             base.ReEnter();
         }
-        // Update is called once per frame
+
         void Update()
         {
             switch (currentState)
@@ -92,6 +93,7 @@ namespace FSM
                 case State.FIGHT:
                     if (fightingTime >= blackboard.maxFightTime)
                     {
+
                         ChangeState(State.RUN_AWAY);
                         break;
                     }
@@ -102,6 +104,7 @@ namespace FSM
 
         private void ChangeState(State newState)
         {
+            //EXIT logic
             switch (this.currentState)
             {
                 case State.HIDE:
@@ -123,6 +126,7 @@ namespace FSM
                     break;
             }
 
+            //ENTER logic
             switch (newState)
             {
                 case State.HIDE:
@@ -141,6 +145,7 @@ namespace FSM
                     arrive.enabled = true;
                     break;
                 case State.FIGHT:
+                    fightAudio.Play();
                     fightingTime = 0f;
                     break;
 
@@ -167,25 +172,5 @@ namespace FSM
             visible = false;
             gameObject.tag = "FLEEING_INVADER";
         }
-
-        /*private void OnDrawGizmos()
-		{
-			Gizmos.color = Color.red;
-
-			Gizmos.DrawWireSphere(gameObject.transform.position, blackboard.catDetectableRadius);
-
-			Gizmos.color = Color.green;
-
-			Gizmos.DrawWireSphere(gameObject.transform.position, blackboard.catReachedRadius);
-
-			Gizmos.color = Color.blue;
-
-			Gizmos.DrawWireSphere(gameObject.transform.position, blackboard.minDistanceToHide);
-
-			Gizmos.color = Color.yellow;
-
-			Gizmos.DrawWireSphere(gameObject.transform.position, blackboard.placeReachedRadius);
-		
-		}*/
     }
 }

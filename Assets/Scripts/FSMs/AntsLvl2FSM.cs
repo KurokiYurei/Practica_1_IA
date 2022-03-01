@@ -19,6 +19,7 @@ namespace FSM
         private bool transportingCheese;
         private float closeToCheeseSpawnerDistance;
         private AntsFSM antFSM;
+
         void Start()
         {
             flockingAround = GetComponent<FlockingAround>();
@@ -70,6 +71,7 @@ namespace FSM
 
         private void ChangeState(State newState)
         {
+            //EXIT logic
             switch (currentState)
             {
                 case State.GO_TO_CHEESE:
@@ -85,6 +87,7 @@ namespace FSM
                     break;
             }
 
+            //ENTER logic
             switch (newState)
             {
                 case State.GO_TO_CHEESE:

@@ -20,9 +20,6 @@ namespace FSM
 
         private AntsBlackboard blackboard;
 
-
-
-
         void Start()
         {
             flockingAround = GetComponent<FlockingAround>();
@@ -84,9 +81,9 @@ namespace FSM
                     break;
             }
         }
-
         private void ChangeState(State newState)
         {
+            //EXIT logic
             switch (currentState)
             {
                 case State.INITIAL:
@@ -108,6 +105,7 @@ namespace FSM
                     break;
             }
 
+            //ENTER logic
             switch (newState)
             {
                 case State.INITIAL:

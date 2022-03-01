@@ -23,7 +23,6 @@ namespace FSM
         private MiceFSM m_miceFSM;
 
         private Vector3 m_startPosition;
-        private float m_startRotation;
         public float m_currentTimeToDie;
 
 
@@ -72,14 +71,14 @@ namespace FSM
                         ChangeState(State.NORMAL);
                         break;
                     }
-                    if(gameObject.tag != "MOUSE")
+                    if (gameObject.tag != "MOUSE")
                     {
                         ChangeState(State.TRAPPED);
                         break;
                     }
                     break;
                 case State.TRAPPED:
-                    if(m_currentTimeToDie >= m_blackboard.m_timeToDie)
+                    if (m_currentTimeToDie >= m_blackboard.m_timeToDie)
                     {
                         ChangeState(State.RESPAWN);
                         break;
@@ -108,7 +107,7 @@ namespace FSM
                     break;
                 case State.TRAPPED:
                     break;
-                case State.RESPAWN:     
+                case State.RESPAWN:
                     break;
             }
 
