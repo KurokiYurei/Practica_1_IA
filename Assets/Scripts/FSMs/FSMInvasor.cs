@@ -57,6 +57,7 @@ namespace FSM
                     {
                         Respawn();
                         ChangeState(State.MOVE);
+                        break;
                     }
                     hidingTime += Time.deltaTime;
                     break;
@@ -65,29 +66,34 @@ namespace FSM
                     if (!visible)
                     {
                         ChangeState(State.HIDE);
+                        break;
                     }
                     break;
                 case State.MOVE:
                     if (SensingUtils.DistanceToTarget(gameObject, blackboard.moveTarget) < blackboard.placeReachedRadius)
                     {
                         ChangeState(State.HIDE);
+                        break;
                     }
 
                     if (SensingUtils.DistanceToTarget(gameObject, blackboard.cat) < blackboard.catDetectableRadius)
                     {
                         ChangeState(State.GO_TO_CAT);
+                        break;
                     }
                     break;
                 case State.GO_TO_CAT:
                     if (SensingUtils.DistanceToTarget(gameObject, blackboard.cat) <= blackboard.catReachedRadius)
                     {
                         ChangeState(State.FIGHT);
+                        break;
                     }
                     break;
                 case State.FIGHT:
                     if (fightingTime >= blackboard.maxFightTime)
                     {
                         ChangeState(State.RUN_AWAY);
+                        break;
                     }
                     fightingTime += Time.deltaTime;
                     break;
