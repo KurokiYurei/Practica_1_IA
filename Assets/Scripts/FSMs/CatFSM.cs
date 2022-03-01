@@ -21,6 +21,7 @@ namespace FSM
 
         public GameObject mouse;
 
+
         //Steerings
         private WanderAroundPlusAvoid wander;
         private Arrive arrive;
@@ -126,6 +127,7 @@ namespace FSM
                     pursue.target = null;
                     break;
                 case State.KILL_MOUSE:
+                    mouse.GetComponent<MiceFSM2>().Respawn();
                     break;
                 default:
                     break;

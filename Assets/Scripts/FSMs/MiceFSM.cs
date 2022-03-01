@@ -59,7 +59,7 @@ namespace FSM
                     }
                     break;
                 case State.REACH_CHEESE:
-                    if (SensingUtils.DistanceToTarget(gameObject, m_cheese) <= m_blackboard.m_minDistanceToInteract)
+                    if (SensingUtils.DistanceToTarget(gameObject, m_cheese) <= m_blackboard.m_minDistanceToEat)
                     {
                         ChangeState(State.EAT);
                     }
