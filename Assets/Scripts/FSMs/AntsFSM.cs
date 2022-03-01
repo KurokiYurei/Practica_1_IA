@@ -9,7 +9,7 @@ namespace FSM
     {
         public enum State
         {
-            INITIAL, WANDERING, GO_TO_TARGET
+            INITIAL, WANDERING, WANDER_CURSOR, GO_TO_TARGET
         };
 
         public State currentState = State.INITIAL;
@@ -17,6 +17,7 @@ namespace FSM
         public GameObject userControlledTarget;
         private float closeToFollowTargetDistance;
         private float closeToTargetDistance;
+        public GameObject antsWanderPoint;
 
 
         void Start()
@@ -24,7 +25,7 @@ namespace FSM
             flockingAround = GetComponent<FlockingAround>();
 
             closeToTargetDistance = 10.0f;
-            closeToFollowTargetDistance = 30.0f;
+            closeToFollowTargetDistance = 60.0f;
             currentState = State.INITIAL;
         }
 
@@ -45,7 +46,6 @@ namespace FSM
             switch (currentState)
             {
                 case State.INITIAL:
-                    flockingAround.seekWeight = 0.3f;
                     ChangeState(State.WANDERING);
                     break;
 
@@ -55,17 +55,21 @@ namespace FSM
                         ChangeState(State.GO_TO_TARGET);
                     }
                     break;
+                case State.WANDER_CURSOR:
+                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > closeToTargetDistance)
+                    {
+                        ChangeState(State.GO_TO_TARGET);
+                    }
+                    break;
 
                 case State.GO_TO_TARGET:
                     if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > closeToFollowTargetDistance)
                     {
-                        flockingAround.seekWeight = 0.15f;
                         ChangeState(State.WANDERING);
                     }
                     if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= closeToTargetDistance)
                     {
-                        flockingAround.seekWeight = 0.7f;
-                        ChangeState(State.WANDERING);
+                        ChangeState(State.WANDER_CURSOR);
                     }
                     break;
 
@@ -86,6 +90,10 @@ namespace FSM
                     flockingAround.enabled = false;
                     break;
 
+                case State.WANDER_CURSOR:
+                    flockingAround.enabled = false;
+                    break;
+
                 case State.GO_TO_TARGET:
                     flockingAround.enabled = false;
                     break;
@@ -100,6 +108,13 @@ namespace FSM
                     break;
 
                 case State.WANDERING:
+                    flockingAround.seekWeight = 0.15f;
+                    flockingAround.attractor = antsWanderPoint;
+                    flockingAround.enabled = true;
+                    break;
+
+                case State.WANDER_CURSOR:
+                    flockingAround.seekWeight = 0.5f;
                     flockingAround.attractor = userControlledTarget;
                     flockingAround.enabled = true;
                     break;
@@ -113,6 +128,7 @@ namespace FSM
                 default:
                     break;
             }
+            currentState = newState;
         }
     }
 }

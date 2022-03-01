@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &28845134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 28845135}
+  m_Layer: 0
+  m_Name: AntsWanderPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &28845135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28845134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 80.8, y: 5.8, z: -0.6677987}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &572685404
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,11 +287,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7161924369634878092, guid: cf2b85934f94b0e46ae45e67a5a440ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44.5
+      value: -129.4
       objectReference: {fileID: 0}
     - target: {fileID: 7161924369634878092, guid: cf2b85934f94b0e46ae45e67a5a440ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 42.4
+      value: 43.9
       objectReference: {fileID: 0}
     - target: {fileID: 7161924369634878092, guid: cf2b85934f94b0e46ae45e67a5a440ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -309,12 +340,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8699642653340850664, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8699642653340850664, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
+    - target: {fileID: 8699642653340850665, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: antsWanderPoint
+      value: 
+      objectReference: {fileID: 28845134}
     - target: {fileID: 8699642653340850665, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: userControlledTarget
       value: 
@@ -328,6 +363,10 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8699642653805365801, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: antsWanderPoint
+      value: 
+      objectReference: {fileID: 28845134}
+    - target: {fileID: 8699642653805365801, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1170628492}
@@ -337,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699642653805365805, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8699642653805365805, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
@@ -353,24 +392,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699642653906854997, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8699642653906854997, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
     - target: {fileID: 8699642653906854998, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: antsWanderPoint
+      value: 
+      objectReference: {fileID: 28845134}
+    - target: {fileID: 8699642653906854998, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: userControlledTarget
       value: 
       objectReference: {fileID: 1170628492}
     - target: {fileID: 8699642654009127473, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8699642654009127473, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
+    - target: {fileID: 8699642654009127474, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: antsWanderPoint
+      value: 
+      objectReference: {fileID: 28845134}
     - target: {fileID: 8699642654009127474, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: userControlledTarget
       value: 
@@ -389,12 +436,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699642654447832124, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8699642654447832124, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
+    - target: {fileID: 8699642654447832125, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: antsWanderPoint
+      value: 
+      objectReference: {fileID: 28845134}
     - target: {fileID: 8699642654447832125, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: userControlledTarget
       value: 
@@ -461,12 +512,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699642655074872438, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8699642655074872438, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
+    - target: {fileID: 8699642655074872439, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: antsWanderPoint
+      value: 
+      objectReference: {fileID: 28845134}
     - target: {fileID: 8699642655074872439, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: userControlledTarget
       value: 
@@ -477,12 +532,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699642655247281234, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8699642655247281234, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: cheeseSpawner
       value: 
       objectReference: {fileID: 572685405}
+    - target: {fileID: 8699642655247281235, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
+      propertyPath: antsWanderPoint
+      value: 
+      objectReference: {fileID: 28845134}
     - target: {fileID: 8699642655247281235, guid: f085063ecfda0a84dbcdadaa62cb524d, type: 3}
       propertyPath: userControlledTarget
       value: 

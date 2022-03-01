@@ -99,6 +99,7 @@ namespace FSM
                 default:
                     break;
             }
+            currentState = newState;
         }
     }
 }
