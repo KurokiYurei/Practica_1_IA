@@ -106,7 +106,9 @@ namespace FSM
                     arrive.enabled = false;
                     break;
                 case State.FIGHTING:
+                    //keepPosition.target = null;
                     keepPosition.enabled = false;
+
                     break;
                 default:
                     break;
