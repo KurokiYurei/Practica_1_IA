@@ -7,7 +7,7 @@ public class DoorButtonActivator : MonoBehaviour
     public bool openDoor;
     private bool opened;
     public GameObject door;
-    private float timer;
+    public float timer;
     private float maxTime;
 
     private void Start()
@@ -19,18 +19,22 @@ public class DoorButtonActivator : MonoBehaviour
     }
     void Update()
     {
+        
         if (openDoor)
         {
-            timer =+ Time.deltaTime;
+            timer += Time.deltaTime;
             if (!opened)
             {
-                door.SetActive(true);
+                door.GetComponent<SpriteRenderer>().color = Color.green;
+                door.tag = "DOOR_OPENED";
                 opened = true;
             }
             if(timer >= maxTime)
             {
-                door.SetActive(false);
+                door.GetComponent<SpriteRenderer>().color = Color.red;
+                door.tag = "DOOR";
                 openDoor = false;
+                timer = 0;
             }
         }
     }

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7117284672042986844}
   - component: {fileID: 7117284672042986837}
   - component: {fileID: 7117284672042986834}
-  - component: {fileID: 7117284672042986838}
+  - component: {fileID: 8223554331947351458}
   - component: {fileID: 7117284672042986846}
-  - component: {fileID: 7117284672042986833}
+  - component: {fileID: 211350582881373386}
   - component: {fileID: 7117284672042986835}
   - component: {fileID: 7117284672042986836}
   m_Layer: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_currentState: 0
   m_home: {fileID: 0}
---- !u!114 &7117284672042986838
+--- !u!114 &8223554331947351458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,11 +130,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7117284672042986843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 905485c4079b9d34898843c11013c103, type: 3}
+  m_Script: {fileID: 11500000, guid: f4b26cab880197d4da32850ff152c48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationalPolicy: 1
   target: {fileID: 0}
+  showWhisker: 1
+  lookAheadLength: 10
+  avoidDistance: 10
+  secondaryWhiskerAngle: 30
+  secondaryWhiskerRatio: 0.7
+  rotationalPolicy: 1
 --- !u!114 &7117284672042986846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,15 +152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd97df895ddcbf4b878f56207728ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 100
-  maxSpeed: 10
-  maxAngularAcceleration: 450
-  maxAngularSpeed: 45
+  maxAcceleration: 30
+  maxSpeed: 15
+  maxAngularAcceleration: 200
+  maxAngularSpeed: 100
   position: {x: 0, y: 0, z: 0}
   orientation: 0
   linearVelocity: {x: 0, y: 0, z: 0}
   angularSpeed: 0
---- !u!114 &7117284672042986833
+--- !u!114 &211350582881373386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,7 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7117284672042986843}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba679a59e7431648afba207d3af07a9, type: 3}
+  m_Script: {fileID: 11500000, guid: b78e8fd2ccf3c044ea2ad57dd6e81f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationalPolicy: 1
@@ -173,6 +178,11 @@ MonoBehaviour:
   wanderOffset: 2
   attractor: {fileID: 0}
   seekWeight: 0.4
+  showWhisker: 1
+  lookAheadLength: 20
+  avoidDistance: 20
+  secondaryWhiskerAngle: 30
+  secondaryWhiskerRatio: 0.7
 --- !u!114 &7117284672042986835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cheeseDetectionRadious: 20
   m_minDistanceToSafety: 4
+  m_minDistanceToGetCaught: 5
   m_minDistanceToEat: 1
   m_minDistanceToInteract: 11
   m_eatTimeout: 20

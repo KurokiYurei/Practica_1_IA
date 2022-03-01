@@ -254,6 +254,10 @@ PrefabInstance:
       value: Mice (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_TagString
       value: MOUSE
       objectReference: {fileID: 0}
@@ -283,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -522,10 +526,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 927961319}
     m_Modifications:
-    - target: {fileID: 3137239393253215797, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986834, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_home
       value: 
@@ -534,37 +534,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mice
       objectReference: {fileID: 0}
-    - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
-      propertyPath: m_TagString
-      value: MOUSE
-      objectReference: {fileID: 0}
-    - target: {fileID: 7117284672042986844, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -77.1
+      value: -76
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -35.3
+      value: -33.7
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -616,6 +600,10 @@ PrefabInstance:
       value: Mice (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_TagString
       value: MOUSE
       objectReference: {fileID: 0}
@@ -645,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -880,7 +868,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720204896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -63.7, y: 0, z: -1}
+  m_LocalPosition: {x: -63.7, y: 0, z: 0}
   m_LocalScale: {x: 14.878569, y: 80.11837, z: 7.2667}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1129,7 +1117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7161924369634878092, guid: cf2b85934f94b0e46ae45e67a5a440ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.095055
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7161924369634878092, guid: cf2b85934f94b0e46ae45e67a5a440ff, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1194,7 +1182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927961318}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.524054, y: -0.6857176, z: -0.65631324}
+  m_LocalPosition: {x: 30.524054, y: -0.6857176, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1263,7 +1251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416532144083738628, guid: 0069197a9bd83684c945cc77608785d4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4416532144083738628, guid: 0069197a9bd83684c945cc77608785d4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1660,7 +1648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145260372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.4, y: -60.5, z: 1.2802231}
+  m_LocalPosition: {x: 55.4, y: -60.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1691,7 +1679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367294886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.4036937, y: 6.2011414, z: 0.6521267}
+  m_LocalPosition: {x: 6.4036937, y: 6.2011414, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1730,7 +1718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513247259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.805529, y: 4.9023895, z: 1.3924942}
+  m_LocalPosition: {x: -17.805529, y: 4.9023895, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1752,8 +1740,8 @@ GameObject:
   - component: {fileID: 1541442989}
   - component: {fileID: 1541442988}
   m_Layer: 0
-  m_Name: Safe_Zone
-  m_TagString: Untagged
+  m_Name: Door
+  m_TagString: DOOR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1800,7 +1788,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.47450984, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1818,7 +1806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541442987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 63.4, y: 0, z: 1}
+  m_LocalPosition: {x: 63.4, y: 0, z: 0}
   m_LocalScale: {x: 13.588904, y: 13.588904, z: 13.588904}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1849,6 +1837,10 @@ PrefabInstance:
       value: Mice (4)
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_TagString
       value: MOUSE
       objectReference: {fileID: 0}
@@ -1866,7 +1858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1959,7 +1951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788309386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -33.8, z: 1.1378239}
+  m_LocalPosition: {x: -0.1, y: -33.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2153,7 +2145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927243935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.4, y: 66.7, z: 1.2838736}
+  m_LocalPosition: {x: -51.4, y: 66.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2286,7 +2278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7857171987596251748, guid: 666a11951184d6d46953c5965328a393, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3924942
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7857171987596251748, guid: 666a11951184d6d46953c5965328a393, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2326,16 +2318,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7857171987596251751, guid: 666a11951184d6d46953c5965328a393, type: 3}
       propertyPath: maxAcceleration
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7857171987596251751, guid: 666a11951184d6d46953c5965328a393, type: 3}
       propertyPath: maxAngularSpeed
-      value: 270
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 7857171987596251753, guid: 666a11951184d6d46953c5965328a393, type: 3}
       propertyPath: home
       value: 
       objectReference: {fileID: 493251029}
+    - target: {fileID: 7857171987596251753, guid: 666a11951184d6d46953c5965328a393, type: 3}
+      propertyPath: mouseReachedRadius
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7857171987596251753, guid: 666a11951184d6d46953c5965328a393, type: 3}
       propertyPath: mouseDetectableRadius
       value: 15
@@ -2347,6 +2343,10 @@ PrefabInstance:
     - target: {fileID: 7857171987596251753, guid: 666a11951184d6d46953c5965328a393, type: 3}
       propertyPath: invasorDetectableRadius
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7857171987596251754, guid: 666a11951184d6d46953c5965328a393, type: 3}
+      propertyPath: maxPredictionTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7857171987596251755, guid: 666a11951184d6d46953c5965328a393, type: 3}
       propertyPath: slowDownRadius
@@ -2390,6 +2390,10 @@ PrefabInstance:
       value: Mice (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117284672042986843, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_TagString
       value: MOUSE
       objectReference: {fileID: 0}
@@ -2419,7 +2423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7117284672042986845, guid: 805e7ef760fcecb4c9fcc7825e06719b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5560,7 +5564,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5759110925940513307}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.5, y: -29.5, z: -3.4875493}
+  m_LocalPosition: {x: 51.5, y: -29.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
