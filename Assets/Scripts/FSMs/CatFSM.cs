@@ -103,6 +103,7 @@ namespace FSM
                     //mouse.transform.position = new Vector3(0, 0, 0);
                     if (currentKillingTime >= blackboard.maxKillingTime)
                     {
+                        mouse.GetComponent<MiceFSM2>().Respawn();
                         ChangeState(State.WANDER);
                         break;
                     }
@@ -127,7 +128,7 @@ namespace FSM
                     pursue.target = null;
                     break;
                 case State.KILL_MOUSE:
-                    mouse.GetComponent<MiceFSM2>().Respawn();
+
                     break;
                 default:
                     break;

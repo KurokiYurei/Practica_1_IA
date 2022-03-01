@@ -7,7 +7,7 @@ namespace FSM
 {
     public class MiceFSM2 : FiniteStateMachine
     {
-        public enum State { INITIAL, NORMAL, FLEE, RESPAWN };
+        public enum State { INITIAL, NORMAL, FLEE, TRAPPED, RESPAWN };
 
         public State m_currentState = State.INITIAL;
 
@@ -65,10 +65,13 @@ namespace FSM
                     }
                     break;
                 case State.FLEE:
-                    if(SensingUtils.DistanceToTarget(gameObject, m_cat)> m_blackboard.m_minDistanceToDanger)
+                    if (SensingUtils.DistanceToTarget(gameObject, m_cat) > m_blackboard.m_minDistanceToDanger)
                     {
                         ChangeState(State.NORMAL);
                     }
+                    break;
+                case State.TRAPPED:
+
                     break;
                 case State.RESPAWN:
                     gameObject.GetComponent<KinematicState>().position = m_startPosition;
@@ -80,6 +83,7 @@ namespace FSM
 
         private void ChangeState(State l_newState)
         {
+            //EXIT logic
             switch (m_currentState)
             {
                 case State.NORMAL:
@@ -89,11 +93,14 @@ namespace FSM
                     m_flee.enabled = false;
                     m_miceFSM.enabled = true;
                     break;
+                case State.TRAPPED:
+                    break;
                 case State.RESPAWN:
 
                     break;
             }
 
+            //ENTER logic
             switch (l_newState)
             {
                 case State.NORMAL:
@@ -102,6 +109,9 @@ namespace FSM
                 case State.FLEE:
                     m_flee.target = m_cat;
                     m_flee.enabled = true;
+                    break;
+                case State.TRAPPED:
+                    m_miceFSM.enabled = false;
                     break;
                 case State.RESPAWN:
                     m_miceFSM.enabled = false;

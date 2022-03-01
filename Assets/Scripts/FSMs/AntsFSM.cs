@@ -15,17 +15,20 @@ namespace FSM
         public State currentState = State.INITIAL;
         private FlockingAround flockingAround;
         public GameObject userControlledTarget;
-        private float closeToFollowTargetDistance;
-        private float closeToTargetDistance;
+
         public GameObject antsWanderPoint;
+
+        private AntsBlackboard blackboard;
+
+
 
 
         void Start()
         {
             flockingAround = GetComponent<FlockingAround>();
 
-            closeToTargetDistance = 10.0f;
-            closeToFollowTargetDistance = 60.0f;
+            blackboard = GetComponent<AntsBlackboard>();
+
             currentState = State.INITIAL;
         }
 
@@ -50,24 +53,24 @@ namespace FSM
                     break;
 
                 case State.WANDERING:
-                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= closeToFollowTargetDistance)
+                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= blackboard.closeToFollowTargetDistance)
                     {
                         ChangeState(State.GO_TO_TARGET);
                     }
                     break;
                 case State.WANDER_CURSOR:
-                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > closeToTargetDistance)
+                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > blackboard.closeToTargetDistance)
                     {
                         ChangeState(State.GO_TO_TARGET);
                     }
                     break;
 
                 case State.GO_TO_TARGET:
-                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > closeToFollowTargetDistance)
+                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) > blackboard.closeToFollowTargetDistance)
                     {
                         ChangeState(State.WANDERING);
                     }
-                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= closeToTargetDistance)
+                    if (SensingUtils.DistanceToTarget(gameObject, userControlledTarget) <= blackboard.closeToTargetDistance)
                     {
                         ChangeState(State.WANDER_CURSOR);
                     }
@@ -107,19 +110,19 @@ namespace FSM
                     break;
 
                 case State.WANDERING:
-                    flockingAround.seekWeight = 0.15f;
+                    flockingAround.seekWeight = blackboard.antsWanderingWeight;
                     flockingAround.attractor = antsWanderPoint;
                     flockingAround.enabled = true;
                     break;
 
                 case State.WANDER_CURSOR:
-                    flockingAround.seekWeight = 0.5f;
+                    flockingAround.seekWeight = blackboard.antsCursorWeight;
                     flockingAround.attractor = userControlledTarget;
                     flockingAround.enabled = true;
                     break;
 
                 case State.GO_TO_TARGET:
-                    flockingAround.seekWeight = 1.0f;
+                    flockingAround.seekWeight = blackboard.antsGoWeight;
                     flockingAround.attractor = userControlledTarget;
                     flockingAround.enabled = true;
                     break;
