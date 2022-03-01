@@ -68,6 +68,7 @@ namespace FSM
                     invader = SensingUtils.FindInstanceWithinRadius(gameObject, "INVADER", blackboard.invasorDetectableRadius);
                     if (invader != null)
                     {
+                        print("ESTO, si, detection and that, it's not like I want to detect you");
                         ChangeState(State.REACHING_INVADER);
                         break;
                     }
