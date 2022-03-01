@@ -16,8 +16,15 @@ namespace FSM
         [SerializeField]
         private GameObject m_cat;
 
+        public DoorButtonActivator m_button;
+        public GameObject m_door;
+
         private Flee m_flee;
         private MiceFSM m_miceFSM;
+
+        private Vector2 m_startPosition;
+        private Quaternion m_startRotation;
+
 
         void Start()
         {
@@ -26,6 +33,9 @@ namespace FSM
             m_blackboard = GetComponent<MiceBlackboard>();
 
             m_flee.enabled = false;
+
+            m_startPosition = gameObject.transform.position;
+            m_startRotation = gameObject.transform.rotation;
         }
 
         public override void Exit()
@@ -40,6 +50,9 @@ namespace FSM
 
         void Update()
         {
+            CheckButton();
+            CheckDoor();
+
             switch (m_currentState)
             {
                 case State.INITIAL:
@@ -86,6 +99,32 @@ namespace FSM
             }
 
             m_currentState = l_newState;
+        }
+
+        private void CheckButton()
+        {
+            Debug.Log("PBUTTON");
+            if (SensingUtils.DistanceToTarget(gameObject, m_button.gameObject) <= m_blackboard.m_minDistanceToInteract)
+            {
+                Debug.Log("BUTTON");
+                m_button.openDoor = true;
+            }
+        }
+
+        private void CheckDoor()
+        {
+            Debug.Log("PDOOR");
+            if (SensingUtils.DistanceToTarget(gameObject, m_door) <= m_blackboard.m_minDistanceToInteract)
+            {
+                Debug.Log("DOOR");
+                Respawn();  
+            }
+        }
+
+        public void Respawn()
+        {
+            gameObject.transform.position = m_startPosition;
+            gameObject.transform.rotation = m_startRotation;
         }
     }
 }
